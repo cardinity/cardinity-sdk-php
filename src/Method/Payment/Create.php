@@ -97,6 +97,7 @@ class Create implements MethodInterface
                     ]),
                     'exp_year' => new Assert\Required([
                         new Assert\NotBlank(),
+                        new Assert\Type(['type' => 'integer']),
                         new Assert\Length([
                             'min' => 4,
                             'max' => 4
@@ -107,10 +108,11 @@ class Create implements MethodInterface
                     ]),
                     'exp_month' => new Assert\Required([
                         new Assert\NotBlank(),
+                        new Assert\Type(['type' => 'integer']),
                     ]),
                     'cvc' => new Assert\Required([
                         new Assert\NotBlank(),
-                        new Assert\Type(['type' => 'integer']),
+                        new Assert\Type(['type' => 'string']),
                     ]),
                     'holder' => new Assert\Required([
                         new Assert\NotBlank(),

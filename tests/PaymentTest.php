@@ -119,7 +119,7 @@ class PaymentTest extends ClientTestCase
     public function testCreateFailMonthValidation()
     {
         $params = $this->getPaymentParams();
-        $params['payment_instrument']['exp_month'] = '13';
+        $params['payment_instrument']['exp_month'] = 13;
 
         $method = new Payment\Create($params);
         $result = $this->client->call($method);

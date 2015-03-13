@@ -48,7 +48,7 @@ class ClientTestCase extends \PHPUnit_Framework_TestCase
                 'pan' => '4111111111111111',
                 'exp_year' => 2016,
                 'exp_month' => 12,
-                'cvc' => 456,
+                'cvc' => '456',
                 'holder' => 'Mike Dough'
             ],
         ];
