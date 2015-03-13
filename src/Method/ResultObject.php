@@ -62,6 +62,9 @@ abstract class ResultObject implements ResultObjectInterface
         }
     }
 
+    /**
+     * @param string $class
+     */
     private function classGetters($class)
     {
         return array_filter(get_class_methods($class), function ($value) {

@@ -2,8 +2,6 @@
 
 namespace Cardinity\Exception;
 
-use Cardinity\Method\Error;
-use Cardinity\Method\Payment\Payment;
 use Cardinity\Method\ResultObjectInterface;
 
 class Request extends Runtime
