@@ -63,4 +63,4 @@ $payment = $client->call($method);
 [https://developers.cardinity.com/api/v1/](https://developers.cardinity.com/api/v1/)
 
 ## Development Status
-All the API __v1__ methods are implemented. More detailed documentation is coming.
+All the API __v1__ methods are implemented.
