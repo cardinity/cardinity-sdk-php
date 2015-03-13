@@ -22,7 +22,6 @@ class ClientAdapter implements ClientInterface
     /**
      * @param GuzzleHttp\ClientInterface $client
      * @param ExceptionMapper $mapper
-     * @return self
      */
     public function __construct(
         GuzzleHttp\ClientInterface $client,

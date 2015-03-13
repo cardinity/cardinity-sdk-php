@@ -5,6 +5,20 @@ namespace Cardinity\Method;
 abstract class ResultObject implements ResultObjectInterface
 {
     /**
+     * Wrap single result error into array of errors
+     * @return array
+     */
+    public function getErrors()
+    {
+        return [
+            [
+                'field' => 'status',
+                'message' => $this->getError()
+            ]
+        ];
+    }
+
+    /**
      * Serializes result object to json object
      * @return string
      */
@@ -51,6 +65,10 @@ abstract class ResultObject implements ResultObjectInterface
     private function classGetters($class)
     {
         return array_filter(get_class_methods($class), function ($value) {
+            if ($value == 'getErrors') {
+                return false;
+            }
+
             return substr($value, 0, 3) == 'get';
         });
     }

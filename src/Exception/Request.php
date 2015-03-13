@@ -4,19 +4,19 @@ namespace Cardinity\Exception;
 
 use Cardinity\Method\Error;
 use Cardinity\Method\Payment\Payment;
-use Cardinity\Method\ResultObject;
+use Cardinity\Method\ResultObjectInterface;
 
 class Request extends Runtime
 {
-    /** @type ResultObject */
+    /** @type ResultObjectInterface */
     private $result;
     
     /**
-     * @param \Exception $previous 
-     * @param ResultObject $result instance of Payment or Error object
+     * @param \Exception $previous
+     * @param ResultObjectInterface $result
      * @return slef
      */
-    public function __construct(\Exception $previous = null, ResultObject $result = null)
+    public function __construct(\Exception $previous = null, ResultObjectInterface $result = null)
     {
         $this->message .= ' Response data: ' . serialize($result);
         parent::__construct($this->message, $this->code, $previous);
@@ -26,7 +26,7 @@ class Request extends Runtime
 
     /**
      * Get result object of particular response
-     * @return Payment|Error
+     * @return ResultObjectInterface
      */
     public function getResult()
     {
@@ -39,15 +39,6 @@ class Request extends Runtime
      */
     public function getErrors()
     {
-        if ($this->result instanceof Payment) {
-            return [
-                [
-                    'field' => 'status',
-                    'message' => $this->result->getError()
-                ]
-            ];
-        }
-
         return $this->result->getErrors();
     }
 

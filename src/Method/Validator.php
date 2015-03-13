@@ -8,12 +8,11 @@ use Symfony\Component\Validator\Validator\ValidatorInterface as BaseValidator;
 
 class Validator implements ValidatorInterface
 {
-    /** @type ValidatorInterface */
+    /** @type BaseValidator */
     private $validator;
 
     /**
      * @param BaseValidator $validator
-     * @return self
      */
     public function __construct(BaseValidator $validator)
     {

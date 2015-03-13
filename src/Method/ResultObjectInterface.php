@@ -7,5 +7,9 @@ namespace Cardinity\Method;
  */
 interface ResultObjectInterface extends \Serializable
 {
-    
+    /**
+     * Return errors
+     * @return array
+     */
+    public function getErrors();
 }

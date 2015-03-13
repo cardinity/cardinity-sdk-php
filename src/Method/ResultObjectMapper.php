@@ -14,7 +14,7 @@ class ResultObjectMapper implements ResultObjectMapperInterface
     /**
      * Map each item in response data to instance of ResultObjectInterface
      * @param array $response
-     * @param MethodResultCollectionInterface $result
+     * @param MethodResultCollectionInterface $method
      *
      * @return array
      */

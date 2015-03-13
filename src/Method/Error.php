@@ -97,7 +97,7 @@ class Error extends ResultObject
  
     /**
     * Gets the value of errors.
-    * @return mixed
+    * @return array
     */
     public function getErrors()
     {
@@ -106,7 +106,7 @@ class Error extends ResultObject
  
     /**
     * Sets the value of errors.
-    * @param mixed $errors the errors
+    * @param array $errors the errors
     * @return void
     */
     public function setErrors($errors)

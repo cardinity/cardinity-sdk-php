@@ -15,7 +15,6 @@ class ExceptionMapper
 
     /**
      * @param ResultObjectMapperInterface $resultMapper
-     * @return self
      */
     public function __construct(ResultObjectMapperInterface $resultMapper)
     {
@@ -77,7 +76,7 @@ class ExceptionMapper
 
         // map declined response to result object
         if ($exception->getCode() == 402) {
-            $resultObject = $method->createResultObject();   
+            $resultObject = $method->createResultObject();
         } else {
             $resultObject = new Error();
         }

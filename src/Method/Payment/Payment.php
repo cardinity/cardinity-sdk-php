@@ -74,7 +74,7 @@ class Payment extends ResultObject
         customer completes authorization process. */
     private $authorizeData;
 
-    /** @type Cardinity\Method\Payment\AuthorizationInformation Specific authorization object returned in case additional
+    /** @type AuthorizationInformation Specific authorization object returned in case additional
         payment authorization is needed (i.e. payment status is pending).
         Value assigned by Cardinity. */
     private $authorizationInformation;

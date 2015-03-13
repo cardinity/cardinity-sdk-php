@@ -120,7 +120,6 @@ class Create implements MethodInterface
                         ]),
                     ]),
                 ]);
-                break;
             case self::RECURRING:
                 return new Assert\Collection([
                     'payment_id' => new Assert\Required([
@@ -128,7 +127,6 @@ class Create implements MethodInterface
                         new Assert\Type(['type' => 'string']),
                     ])
                 ]);
-                break;
         }
 
         throw new \InvalidArgumentException(

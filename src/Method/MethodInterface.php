@@ -41,7 +41,7 @@ interface MethodInterface
     
     /**
      * Validation constraints for fields
-     * @return array
+     * @return Symfony\Component\Validator\Constraints\Collection
      */
     public function getValidationConstraints();
 

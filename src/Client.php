@@ -20,6 +20,12 @@ class Client
     /** @type ClientInterface */
     private $client;
 
+    /** @type ValidatorInterface */
+    private $validator;
+
+    /** @type ResultObjectMapperInterface */
+    private $mapper;
+
     /** @type string */
     private static $url = 'https://api.cardinity.com/v1/';
 
@@ -30,7 +36,7 @@ class Client
      *     'consumerKey' => 'foo',
      *     'consumerSecret' => 'bar',
      * ]
-     * @param LoggerInterface|callable|resource|null $logger Logger used to log
+     * @param LoggerInterface|callable|resource|null|boolean $logger Logger used to log
      *     messages. Pass a LoggerInterface to use a PSR-3 logger. Pass a
      *     callable to log messages to a function that accepts a string of
      *     data. Pass a resource returned from ``fopen()`` to log to an open
@@ -38,15 +44,15 @@ class Client
      *     ``echo()``.
      * @return self
      */
-    public static function create(array $options = [], $log = false)
+    public static function create(array $options = [], $logger = false)
     {
         $client = new \GuzzleHttp\Client([
             'base_url' => self::$url,
             'defaults' => ['auth' => 'oauth']
         ]);
 
-        if ($log !== false) {
-            $subscriber = new LogSubscriber($log, Formatter::DEBUG);
+        if ($logger !== false) {
+            $subscriber = new LogSubscriber($logger, Formatter::DEBUG);
             $client->getEmitter()->attach($subscriber);
         }
 
@@ -69,7 +75,6 @@ class Client
      * @param ClientInterface $client
      * @param ValidatorInterface $validator
      * @param ResultObjectMapperInterface $mapper
-     * @return self
      */
     public function __construct(
         ClientInterface $client,
