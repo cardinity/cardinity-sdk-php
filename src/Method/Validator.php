@@ -4,7 +4,7 @@ namespace Cardinity\Method;
 
 use Cardinity\Exception;
 use Cardinity\Method\MethodInterface;
-use Symfony\Component\Validator\ValidatorInterface as BaseValidator;
+use Symfony\Component\Validator\Validator\ValidatorInterface as BaseValidator;
 
 class Validator implements ValidatorInterface
 {
