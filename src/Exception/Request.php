@@ -14,7 +14,6 @@ class Request extends Runtime
     /**
      * @param \Exception $previous
      * @param ResultObjectInterface $result
-     * @return slef
      */
     public function __construct(\Exception $previous = null, ResultObjectInterface $result = null)
     {

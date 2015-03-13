@@ -62,12 +62,12 @@ class Client
         ]);
         $client->getEmitter()->attach($oauth);
 
-        $ResultObjectMapper = new ResultObjectMapper();
+        $mapper = new ResultObjectMapper();
 
         return new Self(
             new Guzzle\ClientAdapter($client, new Guzzle\ExceptionMapper($ResultObjectMapper)),
             new Validator(Validation::createValidator()),
-            $ResultObjectMapper,
+            $mapper,
             $options
         );
     }
