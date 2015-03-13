@@ -67,7 +67,7 @@ class Payment extends ResultObject
     /** @type PaymentInstrumentInterface Payment instrument representing earlier described
         payment_method.
         Can be one of the following: card or recurring.
-        */
+     */
     private $paymentInstrument;
 
     /** @type string Used to provide additional information (PATCH verb) once
@@ -80,304 +80,304 @@ class Payment extends ResultObject
     private $authorizationInformation;
  
     /**
-    * Gets the value of id.
-    * @return mixed
-    */
+     * Gets the value of id.
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
  
     /**
-    * Sets the value of id.
-    * @param mixed $id the id
-    * @return void
-    */
+     * Sets the value of id.
+     * @param mixed $id the id
+     * @return void
+     */
     public function setId($id)
     {
         $this->id = $id;
     }
  
     /**
-    * Gets the value of amount.
-    * @return mixed
-    */
+     * Gets the value of amount.
+     * @return mixed
+     */
     public function getAmount()
     {
         return $this->amount;
     }
  
     /**
-    * Sets the value of amount.
-    * @param mixed $amount the amount
-    * @return void
-    */
+     * Sets the value of amount.
+     * @param mixed $amount the amount
+     * @return void
+     */
     public function setAmount($amount)
     {
         $this->amount = $amount;
     }
  
     /**
-    * Gets the value of currency.
-    * @return mixed
-    */
+     * Gets the value of currency.
+     * @return mixed
+     */
     public function getCurrency()
     {
         return $this->currency;
     }
  
     /**
-    * Sets the value of currency.
-    * @param mixed $currency the currency
-    * @return void
-    */
+     * Sets the value of currency.
+     * @param mixed $currency the currency
+     * @return void
+     */
     public function setCurrency($currency)
     {
         $this->currency = $currency;
     }
  
     /**
-    * Gets the value of created.
-    * @return mixed
-    */
+     * Gets the value of created.
+     * @return mixed
+     */
     public function getCreated()
     {
         return $this->created;
     }
  
     /**
-    * Sets the value of created.
-    * @param mixed $created the created
-    * @return void
-    */
+     * Sets the value of created.
+     * @param mixed $created the created
+     * @return void
+     */
     public function setCreated($created)
     {
         $this->created = $created;
     }
  
     /**
-    * Gets the value of type.
-    * @return mixed
-    */
+     * Gets the value of type.
+     * @return mixed
+     */
     public function getType()
     {
         return $this->type;
     }
  
     /**
-    * Sets the value of type.
-    * @param mixed $type the type
-    * @return void
-    */
+     * Sets the value of type.
+     * @param mixed $type the type
+     * @return void
+     */
     public function setType($type)
     {
         $this->type = $type;
     }
  
     /**
-    * Gets the value of live.
-    * @return mixed
-    */
+     * Gets the value of live.
+     * @return mixed
+     */
     public function getLive()
     {
         return $this->live;
     }
  
     /**
-    * Sets the value of live.
-    * @param mixed $live the live
-    * @return void
-    */
+     * Sets the value of live.
+     * @param mixed $live the live
+     * @return void
+     */
     public function setLive($live)
     {
         $this->live = $live;
     }
  
     /**
-    * Gets the value of settle.
-    * @return mixed
-    */
+     * Gets the value of settle.
+     * @return mixed
+     */
     public function getSettle()
     {
         return $this->settle;
     }
  
     /**
-    * Sets the value of settle.
-    * @param mixed $settle the settle
-    * @return void
-    */
+     * Sets the value of settle.
+     * @param mixed $settle the settle
+     * @return void
+     */
     public function setSettle($settle)
     {
         $this->settle = $settle;
     }
  
     /**
-    * Gets the value of status.
-    * @return mixed
-    */
+     * Gets the value of status.
+     * @return mixed
+     */
     public function getStatus()
     {
         return $this->status;
     }
  
     /**
-    * Sets the value of status.
-    * @param mixed $status the status
-    * @return void
-    */
+     * Sets the value of status.
+     * @param mixed $status the status
+     * @return void
+     */
     public function setStatus($status)
     {
         $this->status = $status;
     }
  
     /**
-    * Gets the value of error.
-    * @return mixed
-    */
+     * Gets the value of error.
+     * @return mixed
+     */
     public function getError()
     {
         return $this->error;
     }
  
     /**
-    * Sets the value of error.
-    * @param mixed $error the error
-    * @return void
-    */
+     * Sets the value of error.
+     * @param mixed $error the error
+     * @return void
+     */
     public function setError($error)
     {
         $this->error = $error;
     }
  
     /**
-    * Gets the value of orderId.
-    * @return mixed
-    */
+     * Gets the value of orderId.
+     * @return mixed
+     */
     public function getOrderId()
     {
         return $this->orderId;
     }
  
     /**
-    * Sets the value of orderId.
-    * @param mixed $orderId the order id
-    * @return void
-    */
+     * Sets the value of orderId.
+     * @param mixed $orderId the order id
+     * @return void
+     */
     public function setOrderId($orderId)
     {
         $this->orderId = $orderId;
     }
  
     /**
-    * Gets the value of description.
-    * @return mixed
-    */
+     * Gets the value of description.
+     * @return mixed
+     */
     public function getDescription()
     {
         return $this->description;
     }
  
     /**
-    * Sets the value of description.
-    * @param mixed $description the description
-    * @return void
-    */
+     * Sets the value of description.
+     * @param mixed $description the description
+     * @return void
+     */
     public function setDescription($description)
     {
         $this->description = $description;
     }
  
     /**
-    * Gets the value of country.
-    * @return mixed
-    */
+     * Gets the value of country.
+     * @return mixed
+     */
     public function getCountry()
     {
         return $this->country;
     }
  
     /**
-    * Sets the value of country.
-    * @param mixed $country the country
-    * @return void
-    */
+     * Sets the value of country.
+     * @param mixed $country the country
+     * @return void
+     */
     public function setCountry($country)
     {
         $this->country = $country;
     }
  
     /**
-    * Gets the value of paymentMethod.
-    * @return mixed
-    */
+     * Gets the value of paymentMethod.
+     * @return mixed
+     */
     public function getPaymentMethod()
     {
         return $this->paymentMethod;
     }
  
     /**
-    * Sets the value of paymentMethod.
-    * @param mixed $paymentMethod the payment method
-    * @return void
-    */
+     * Sets the value of paymentMethod.
+     * @param mixed $paymentMethod the payment method
+     * @return void
+     */
     public function setPaymentMethod($paymentMethod)
     {
         $this->paymentMethod = $paymentMethod;
     }
  
     /**
-    * Gets the value of paymentInstrument.
-    * @return PaymentInstrumentInterface
-    */
+     * Gets the value of paymentInstrument.
+     * @return PaymentInstrumentInterface
+     */
     public function getPaymentInstrument()
     {
         return $this->paymentInstrument;
     }
  
     /**
-    * Sets the value of paymentInstrument.
-    * @param PaymentInstrumentInterface $paymentInstrument the payment instrument
-    * @return void
-    */
+     * Sets the value of paymentInstrument.
+     * @param PaymentInstrumentInterface $paymentInstrument the payment instrument
+     * @return void
+     */
     public function setPaymentInstrument(PaymentInstrumentInterface $paymentInstrument)
     {
         $this->paymentInstrument = $paymentInstrument;
     }
  
     /**
-    * Gets the value of authorizeData.
-    * @return mixed
-    */
+     * Gets the value of authorizeData.
+     * @return mixed
+     */
     public function getAuthorizeData()
     {
         return $this->authorizeData;
     }
  
     /**
-    * Sets the value of authorizeData.
-    * @param mixed $authorizeData the authorize data
-    * @return void
-    */
+     * Sets the value of authorizeData.
+     * @param mixed $authorizeData the authorize data
+     * @return void
+     */
     public function setAuthorizeData($authorizeData)
     {
         $this->authorizeData = $authorizeData;
     }
  
     /**
-    * Gets the value of authorizationInformation.
-    * @return AuthorizationInformation
-    */
+     * Gets the value of authorizationInformation.
+     * @return AuthorizationInformation
+     */
     public function getAuthorizationInformation()
     {
         return $this->authorizationInformation;
     }
  
     /**
-    * Sets the value of authorizationInformation.
-    * @param AuthorizationInformation $authorizationInformation the authorization information
-    * @return void
-    */
+     * Sets the value of authorizationInformation.
+     * @param AuthorizationInformation $authorizationInformation the authorization information
+     * @return void
+     */
     public function setAuthorizationInformation(AuthorizationInformation $authorizationInformation)
     {
         $this->authorizationInformation = $authorizationInformation;

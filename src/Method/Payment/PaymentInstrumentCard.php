@@ -25,95 +25,95 @@ class PaymentInstrumentCard extends ResultObject implements PaymentInstrumentInt
     private $holder;
   
     /**
-    * Gets the value of cardBrand.
-    * @return mixed
-    */
+     * Gets the value of cardBrand.
+     * @return mixed
+     */
     public function getCardBrand()
     {
         return $this->cardBrand;
     }
  
     /**
-    * Sets the value of cardBrand.
-    * @param mixed $cardBrand the card brand
-    * @return void
-    */
+     * Sets the value of cardBrand.
+     * @param mixed $cardBrand the card brand
+     * @return void
+     */
     public function setCardBrand($cardBrand)
     {
         $this->cardBrand = $cardBrand;
     }
  
     /**
-    * Gets the value of pan.
-    * @return mixed
-    */
+     * Gets the value of pan.
+     * @return mixed
+     */
     public function getPan()
     {
         return $this->pan;
     }
  
     /**
-    * Sets the value of pan.
-    * @param mixed $pan the pan
-    * @return void
-    */
+     * Sets the value of pan.
+     * @param mixed $pan the pan
+     * @return void
+     */
     public function setPan($pan)
     {
         $this->pan = $pan;
     }
  
     /**
-    * Gets the value of expYear.
-    * @return mixed
-    */
+     * Gets the value of expYear.
+     * @return mixed
+     */
     public function getExpYear()
     {
         return $this->expYear;
     }
  
     /**
-    * Sets the value of expYear.
-    * @param mixed $expYear the exp year
-    * @return void
-    */
+     * Sets the value of expYear.
+     * @param mixed $expYear the exp year
+     * @return void
+     */
     public function setExpYear($expYear)
     {
         $this->expYear = $expYear;
     }
  
     /**
-    * Gets the value of expMonth.
-    * @return mixed
-    */
+     * Gets the value of expMonth.
+     * @return mixed
+     */
     public function getExpMonth()
     {
         return $this->expMonth;
     }
  
     /**
-    * Sets the value of expMonth.
-    * @param mixed $expMonth the exp month
-    * @return void
-    */
+     * Sets the value of expMonth.
+     * @param mixed $expMonth the exp month
+     * @return void
+     */
     public function setExpMonth($expMonth)
     {
         $this->expMonth = $expMonth;
     }
  
     /**
-    * Gets the value of holder.
-    * @return mixed
-    */
+     * Gets the value of holder.
+     * @return mixed
+     */
     public function getHolder()
     {
         return $this->holder;
     }
  
     /**
-    * Sets the value of holder.
-    * @param mixed $holder the holder
-    * @return void
-    */
+     * Sets the value of holder.
+     * @param mixed $holder the holder
+     * @return void
+     */
     public function setHolder($holder)
     {
         $this->holder = $holder;
