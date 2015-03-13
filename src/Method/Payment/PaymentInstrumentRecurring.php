@@ -11,19 +11,19 @@ class PaymentInstrumentRecurring extends ResultObject implements PaymentInstrume
     private $paymentId;
  
     /**
-    * Gets the value of paymentId.
-    * @return mixed
-    */
+     * Gets the value of paymentId.
+     * @return mixed
+     */
     public function getPaymentId()
     {
         return $this->paymentId;
     }
  
     /**
-    * Sets the value of paymentId.
-    * @param mixed $paymentId the payment id
-    * @return void
-    */
+     * Sets the value of paymentId.
+     * @param mixed $paymentId the payment id
+     * @return void
+     */
     public function setPaymentId($paymentId)
     {
         $this->paymentId = $paymentId;

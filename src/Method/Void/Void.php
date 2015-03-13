@@ -49,171 +49,171 @@ class Void extends ResultObject
     private $description;
  
     /**
-    * Gets the value of id.
-    * @return mixed
-    */
+     * Gets the value of id.
+     * @return mixed
+     */
     public function getId()
     {
         return $this->id;
     }
  
     /**
-    * Sets the value of id.
-    * @param mixed $id the id
-    * @return void
-    */
+     * Sets the value of id.
+     * @param mixed $id the id
+     * @return void
+     */
     public function setId($id)
     {
         $this->id = $id;
     }
  
     /**
-    * Gets the value of type.
-    * @return mixed
-    */
+     * Gets the value of type.
+     * @return mixed
+     */
     public function getType()
     {
         return $this->type;
     }
  
     /**
-    * Sets the value of type.
-    * @param mixed $type the type
-    * @return void
-    */
+     * Sets the value of type.
+     * @param mixed $type the type
+     * @return void
+     */
     public function setType($type)
     {
         $this->type = $type;
     }
  
     /**
-    * Gets the value of created.
-    * @return mixed
-    */
+     * Gets the value of created.
+     * @return mixed
+     */
     public function getCreated()
     {
         return $this->created;
     }
  
     /**
-    * Sets the value of created.
-    * @param mixed $created the created
-    * @return void
-    */
+     * Sets the value of created.
+     * @param mixed $created the created
+     * @return void
+     */
     public function setCreated($created)
     {
         $this->created = $created;
     }
  
     /**
-    * Gets the value of live.
-    * @return mixed
-    */
+     * Gets the value of live.
+     * @return mixed
+     */
     public function getLive()
     {
         return $this->live;
     }
  
     /**
-    * Sets the value of live.
-    * @param mixed $live the live
-    * @return void
-    */
+     * Sets the value of live.
+     * @param mixed $live the live
+     * @return void
+     */
     public function setLive($live)
     {
         $this->live = $live;
     }
  
     /**
-    * Gets the value of parentId.
-    * @return mixed
-    */
+     * Gets the value of parentId.
+     * @return mixed
+     */
     public function getParentId()
     {
         return $this->parentId;
     }
  
     /**
-    * Sets the value of parentId.
-    * @param mixed $parentId the parent id
-    * @return void
-    */
+     * Sets the value of parentId.
+     * @param mixed $parentId the parent id
+     * @return void
+     */
     public function setParentId($parentId)
     {
         $this->parentId = $parentId;
     }
  
     /**
-    * Gets the value of status.
-    * @return mixed
-    */
+     * Gets the value of status.
+     * @return mixed
+     */
     public function getStatus()
     {
         return $this->status;
     }
  
     /**
-    * Sets the value of status.
-    * @param mixed $status the status
-    * @return void
-    */
+     * Sets the value of status.
+     * @param mixed $status the status
+     * @return void
+     */
     public function setStatus($status)
     {
         $this->status = $status;
     }
  
     /**
-    * Gets the value of error.
-    * @return mixed
-    */
+     * Gets the value of error.
+     * @return mixed
+     */
     public function getError()
     {
         return $this->error;
     }
  
     /**
-    * Sets the value of error.
-    * @param mixed $error the error
-    * @return void
-    */
+     * Sets the value of error.
+     * @param mixed $error the error
+     * @return void
+     */
     public function setError($error)
     {
         $this->error = $error;
     }
  
     /**
-    * Gets the value of orderId.
-    * @return mixed
-    */
+     * Gets the value of orderId.
+     * @return mixed
+     */
     public function getOrderId()
     {
         return $this->orderId;
     }
  
     /**
-    * Sets the value of orderId.
-    * @param mixed $orderId the order id
-    * @return void
-    */
+     * Sets the value of orderId.
+     * @param mixed $orderId the order id
+     * @return void
+     */
     public function setOrderId($orderId)
     {
         $this->orderId = $orderId;
     }
  
     /**
-    * Gets the value of description.
-    * @return mixed
-    */
+     * Gets the value of description.
+     * @return mixed
+     */
     public function getDescription()
     {
         return $this->description;
     }
  
     /**
-    * Sets the value of description.
-    * @param mixed $description the description
-    * @return void
-    */
+     * Sets the value of description.
+     * @param mixed $description the description
+     * @return void
+     */
     public function setDescription($description)
     {
         $this->description = $description;
