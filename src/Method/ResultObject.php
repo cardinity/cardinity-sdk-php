@@ -2,6 +2,8 @@
 
 namespace Cardinity\Method;
 
+use Cardinity\Exception;
+
 abstract class ResultObject implements ResultObjectInterface
 {
     /**
@@ -16,6 +18,14 @@ abstract class ResultObject implements ResultObjectInterface
                 'message' => $this->getError()
             ]
         ];
+    }
+
+    /**
+     * Return single error
+     */
+    public function getError()
+    {
+        return '';
     }
 
     /**

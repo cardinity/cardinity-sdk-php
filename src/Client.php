@@ -46,7 +46,7 @@ class Client
      *     'consumerKey' => 'foo',
      *     'consumerSecret' => 'bar',
      * ]
-     * @param LoggerInterface|callable|resource|null|boolean $logger Logger used to log
+     * @param mixed $logger Logger used to log
      *     messages. Pass a LoggerInterface to use a PSR-3 logger. Pass a
      *     callable to log messages to a function that accepts a string of
      *     data. Pass a resource returned from ``fopen()`` to log to an open
