@@ -17,6 +17,16 @@ use Symfony\Component\Validator\Validation;
 
 class Client
 {
+    /**
+     * Disable logger
+     */
+    const LOG_NONE = false;
+
+    /**
+     * Turn on debug mode
+     */
+    const LOG_DEBUG = null;
+
     /** @type ClientInterface */
     private $client;
 
@@ -44,7 +54,7 @@ class Client
      *     ``echo()``.
      * @return self
      */
-    public static function create(array $options = [], $logger = false)
+    public static function create(array $options = [], $logger = Client::LOG_NONE)
     {
         $client = new \GuzzleHttp\Client([
             'base_url' => self::$url,

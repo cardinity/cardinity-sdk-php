@@ -11,11 +11,11 @@ class ClientTestCase extends \PHPUnit_Framework_TestCase
 {
     public function setUp()
     {
-        $log = false;
+        $log = Client::LOG_NONE;
 
         // @NOTE uncomment if request/response debugging is needed
         // Use 'null' value for printing request to console
-        // $log = null; 
+        // $log = Client::LOG_DEBUG; 
         
         // Use monolog logger to log requests into the file
         // $log = new Logger('requests');
