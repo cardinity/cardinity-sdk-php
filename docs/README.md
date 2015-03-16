@@ -347,7 +347,7 @@ Methods:
 - `getViolations()` returns list of validation violations
 
 #### Response mapping to result object failure
-Class: `Cardinity\Exception\ResultObjectInterfacePropertyNotFound`
+Class: `Cardinity\Exception\ResultObjectInterfacePropertyNotFound`  
 Got unexpected response? Response object changed?
 
 #### Unexpected error
@@ -365,7 +365,7 @@ Catching this exception ensures that you handle all cardinity failure use cases.
 Available values: `Client::LOG_NONE`, `Client::LOG_DEBUG` or PSR-3 `LoggerInterface`.
 - `Client::LOG_NONE` - log disabled.
 - `Client::LOG_DEBUG` - logs request/response with direct output to the screen.
-- `LoggerInterface` - custom logger implementation, for ex. `Monolog`.
+- `LoggerInterface` - custom logger implementation, for eg. `Monolog`.
 
 ```php
 $client = Client::create($config, Client::LOG_DEBUG);
