@@ -40,7 +40,7 @@ $payment = $client->call($method);
 ```
 
 ### Handling declined payments
-In case payment could not be processed `Cardinity\Exception\Declined` 
+In case payment could not be processed `Cardinity\Exception\Declined`
 exception will be thrown.
 
 ```php
@@ -133,7 +133,7 @@ $refund = $client->call($method);
 ```
 
 ### Handling declined refunds
-In case refund could not be processed `Cardinity\Exception\Declined` 
+In case refund could not be processed `Cardinity\Exception\Declined`
 exception will be thrown.
 
 ```php
@@ -193,7 +193,7 @@ $result = $client->call($method);
 ```
 
 ### Handling declined settlements
-In case settlement could not be processed `Cardinity\Exception\Declined` 
+In case settlement could not be processed `Cardinity\Exception\Declined`
 exception will be thrown.
 
 ```php
@@ -252,7 +252,7 @@ $result = $client->call($method);
 ```
 
 ### Handling declined voids
-In case void could not be processed `Cardinity\Exception\Declined` 
+In case void could not be processed `Cardinity\Exception\Declined`
 exception will be thrown.
 
 ```php
@@ -297,5 +297,103 @@ $result = $client->call($method);
 $void = $result[0];
 ```
 
-## Errors
-Coming...
+## Exceptions
+### Exceptions representing API error response
+
+#### Base class for API error response exceptions
+Class: `Cardinity\Exception\Request`  
+Methods:  
+- `getErrors()` returns list of errors occured
+- `getErrorsAsString()` returns list of errors occured in string form
+- `getResult()` returns object, the instance of `ResultObjectInterface`.
+
+#### All classes
+Class: `Cardinity\Exception\ValidationFailed`  
+HTTP status: `400`  
+
+Class: `Cardinity\Exception\Unauthorized`  
+HTTP status: `401`  
+
+Class: `Cardinity\Exception\Declined`  
+HTTP status: `402`  
+
+Class: `Cardinity\Exception\Forbidden`  
+HTTP status: `403`  
+
+Class: `Cardinity\Exception\MethodNotAllowed`  
+HTTP status: `405`  
+
+Class: `Cardinity\Exception\NotAcceptable`  
+HTTP status: `406`  
+
+Class: `Cardinity\Exception\NotFound`  
+HTTP status: `404`  
+
+Class: `Cardinity\Exception\InternalServerError`  
+HTTP status: `500`  
+
+Class: `Cardinity\Exception\ServiceUnavailable`  
+HTTP status: `503`  
+
+
+### Cardinity client exceptions
+
+#### Request timed out
+Class: `Cardinity\Exception\RequestTimeout`
+
+#### Before-request data validation failed
+Class: `Cardinity\Exception\InvalidAttributeValue`  
+Methods:  
+- `getViolations()` returns list of validation violations
+
+#### Response mapping to result object failure
+Class: `Cardinity\Exception\ResultObjectInterfacePropertyNotFound`
+Got unexpected response? Response object changed?
+
+#### Unexpected error
+Class: `Cardinity\Exception\UnexpectedError`
+
+#### Base exception class for Cardinity client
+Class: `Cardinity\Exception\Runtime`  
+Catching this exception ensures that you handle all cardinity failure use cases.
+
+
+## Advanced use cases
+
+### Debug, log request/response
+`Client::create()` accepts second argument, which defines the logger. 
+Available values: `Client::LOG_NONE`, `Client::LOG_DEBUG` or PSR-3 `LoggerInterface`.
+- `Client::LOG_NONE` - log disabled.
+- `Client::LOG_DEBUG` - logs request/response with direct output to the screen.
+- `LoggerInterface` - custom logger implementation, for ex. `Monolog`.
+
+```php
+$client = Client::create($config, Client::LOG_DEBUG);
+```
+
+### Use Monolog for logging
+#### 1. Add monolog to your project
+```bash
+$ composer require monolog/monolog
+```
+#### 2. Register logger to the Cardinity client
+```php
+$logger = new Monolog\Logger('requests');
+$logger->pushHandler(new Monolog\Handler\StreamHandler(__DIR__ . '/requests.log', Logger::INFO));
+$client = Client::create($config, $logger);
+```
+
+### Extending components
+Each part of client library can be easily extended or replaced with another suitable component 
+through the corresponding interfaces:
+```php
+public function __construct(
+    Cardinity\Http\ClientInterface $client,
+    Cardinity\Method\ValidatorInterface $validator,
+    Cardinity\Method\ResultObjectMapperInterface $mapper
+) { ... }
+```
+
+For example to replace _Guzzle_ with another http client you want simply create adapter 
+for your client library, like `Cardinity\Http\Guzzle\ClientAdapter` which implements 
+`Cardinity\Http\ClientInterface`. That's it! 
