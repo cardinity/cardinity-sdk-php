@@ -2,6 +2,6 @@
 
 namespace Cardinity\Exception;
 
-class UnexpectedError extends \RuntimeException
+class UnexpectedError extends Runtime
 {
 }

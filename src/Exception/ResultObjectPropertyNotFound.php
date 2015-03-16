@@ -4,6 +4,6 @@ namespace Cardinity\Exception;
 
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
-class ResultObjectInterfacePropertyNotFound extends \RuntimeException
+class ResultObjectInterfacePropertyNotFound extends Runtime
 {
 }
