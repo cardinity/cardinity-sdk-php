@@ -382,4 +382,22 @@ class Payment extends ResultObject
     {
         $this->authorizationInformation = $authorizationInformation;
     }
+
+    /**
+     * Check if payment is pending
+     * @return boolean
+     */
+    public function isPending()
+    {
+        return $this->getStatus() === 'pending';
+    }
+
+    /**
+     * Check if payment is approved
+     * @return boolean
+     */
+    public function isApproved()
+    {
+        return $this->getStatus() === 'approved';
+    }
 }

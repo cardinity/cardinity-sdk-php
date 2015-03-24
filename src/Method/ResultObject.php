@@ -3,6 +3,9 @@
 namespace Cardinity\Method;
 
 use Cardinity\Exception;
+use Cardinity\Method\Payment\AuthorizationInformation;
+use Cardinity\Method\Payment\PaymentInstrumentCard;
+use Cardinity\Method\Payment\PaymentInstrumentRecurring;
 
 abstract class ResultObject implements ResultObjectInterface
 {
@@ -30,9 +33,10 @@ abstract class ResultObject implements ResultObjectInterface
 
     /**
      * Serializes result object to json object
+     * @param boolean $toJson encode result to json
      * @return string
      */
-    public function serialize()
+    public function serialize($toJson = true)
     {
         $data = [];
 
@@ -43,6 +47,8 @@ abstract class ResultObject implements ResultObjectInterface
 
             if (is_float($value)) {
                 $value = sprintf("%01.2f", $value);
+            } elseif (is_object($value)) {
+                $value = $value->serialize(false);
             }
 
             if ($value !== null) {
@@ -50,7 +56,11 @@ abstract class ResultObject implements ResultObjectInterface
             }
         }
 
-        return json_encode($data);
+        if ($toJson === true) {
+            return json_encode($data);
+        }
+
+        return $data;
     }
 
     /**
@@ -66,6 +76,24 @@ abstract class ResultObject implements ResultObjectInterface
 
             if (is_numeric($value) && strstr($value, '.')) {
                 $value = floatval($value);
+            } elseif (is_object($value)) {
+                if ($property == 'authorization_information') {
+                    $object = new AuthorizationInformation();
+                    $object->unserialize(json_encode($value));
+                    $value = $object;
+                } elseif ($property == 'payment_instrument') {
+                    if (!isset($data->payment_method)) {
+                        throw new Exception\Runtime('Property "payment_method" is missing');
+                    }
+
+                    if ($data->payment_method == Payment\Create::CARD) {
+                        $object = new PaymentInstrumentCard();
+                    } elseif ($data->payment_method == Payment\Create::RECURRING) {
+                        $object = new PaymentInstrumentRecurring();
+                    }
+                    $object->unserialize(json_encode($value));
+                    $value = $object;
+                }
             }
 
             $this->$method($value);
@@ -77,8 +105,15 @@ abstract class ResultObject implements ResultObjectInterface
      */
     private function classGetters($class)
     {
-        return array_filter(get_class_methods($class), function ($value) {
+        $methods = get_class_methods($class);
+        return array_filter($methods, function ($value) use ($methods) {
             if ($value == 'getErrors') {
+                return false;
+            }
+
+            // no setter means it's inherited property, should be ignored
+            $setter = $this->setterName($this->propertyName($value));
+            if (!in_array($setter, $methods)) {
                 return false;
             }
 
@@ -88,11 +123,17 @@ abstract class ResultObject implements ResultObjectInterface
 
     private function propertyName($method)
     {
-        return lcfirst(substr($method, 3));
+        $method = lcfirst(substr($method, 3));
+        $method = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $method));
+        return $method;
     }
 
     private function setterName($property)
     {
+        $parts = explode('_', $property);
+        $parts = array_map('ucfirst', $parts);
+        $property = implode('', $parts);
+
         return 'set' . ucfirst($property);
     }
 }

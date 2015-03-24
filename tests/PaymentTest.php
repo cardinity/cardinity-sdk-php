@@ -13,16 +13,30 @@ class PaymentTest extends ClientTestCase
         $payment->setType('bar');
         $payment->setCurrency(null);
         $payment->setAmount('55.00');
+        $payment->setPaymentMethod(Payment\Create::CARD);
+
+        $card = new Payment\PaymentInstrumentCard();
+        $card->setCardBrand('Visa');
+        $card->setPan('4447');
+        $card->setExpYear(2017);
+        $card->setExpMonth(5);
+        $card->setHolder('John Smith');
+        $payment->setPaymentInstrument($card);
+
+        $info = new Payment\AuthorizationInformation();
+        $info->setUrl('http://...');
+        $info->setData('some_data');
+        $payment->setAuthorizationInformation($info);
 
         $this->assertSame(
-            '{"id":"foo","amount":"55.00","type":"bar"}',
+            '{"id":"foo","amount":"55.00","type":"bar","payment_method":"card","payment_instrument":{"card_brand":"Visa","pan":"4447","exp_year":2017,"exp_month":5,"holder":"John Smith"},"authorization_information":{"url":"http:\/\/...","data":"some_data"}}',
             $payment->serialize()
         );
     }
 
     public function testResultObjectUnserialization()
     {
-        $json = '{"id":"foo","amount":"55.00","type":"bar"}';
+        $json = '{"id":"foo","amount":"55.00","type":"bar","payment_method":"card","payment_instrument":{"card_brand":"Visa","pan":"4447","exp_year":2017,"exp_month":5,"holder":"John Smith"},"authorization_information":{"url":"http:\/\/...","data":"some_data"}}';
 
         $payment = new Payment\Payment();
         $payment->unserialize($json);
@@ -31,6 +45,10 @@ class PaymentTest extends ClientTestCase
         $this->assertSame('bar', $payment->getType());
         $this->assertSame(null, $payment->getCurrency());
         $this->assertSame(55.00, $payment->getAmount());
+        $this->assertInstanceOf('Cardinity\Method\Payment\AuthorizationInformation', $payment->getAuthorizationInformation());
+        $this->assertSame('http://...', $payment->getAuthorizationInformation()->getUrl());
+        $this->assertInstanceOf('Cardinity\Method\Payment\PaymentInstrumentCard', $payment->getPaymentInstrument());
+        $this->assertSame('John Smith', $payment->getPaymentInstrument()->getHolder());
     }
 
     /**
