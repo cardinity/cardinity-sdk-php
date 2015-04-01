@@ -74,7 +74,7 @@ class Client
 
         $mapper = new ResultObjectMapper();
 
-        return new Self(
+        return new self(
             new Guzzle\ClientAdapter($client, new Guzzle\ExceptionMapper($mapper)),
             new Validator(Validation::createValidator()),
             $mapper,
