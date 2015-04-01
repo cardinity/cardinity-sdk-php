@@ -77,8 +77,7 @@ class Client
         return new self(
             new Guzzle\ClientAdapter($client, new Guzzle\ExceptionMapper($mapper)),
             new Validator(Validation::createValidator()),
-            $mapper,
-            $options
+            $mapper
         );
     }
     /**
