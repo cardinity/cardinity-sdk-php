@@ -4,7 +4,7 @@ namespace Cardinity\Exception;
 
 use Symfony\Component\Validator\ConstraintViolationListInterface;
 
-class InvalidAttributeValue extends \RuntimeException
+class InvalidAttributeValue extends Runtime
 {
     /** @type ConstraintViolationListInterface */
     private $violations;
