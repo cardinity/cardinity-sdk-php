@@ -112,7 +112,10 @@ class Create implements MethodInterface
                     ]),
                     'cvc' => new Assert\Required([
                         new Assert\NotBlank(),
-                        new Assert\Type(['type' => 'string']),
+                        new Assert\Type(['type' => 'integer']),
+                        new Assert\Length([
+                            'max' => 4
+                        ]),
                     ]),
                     'holder' => new Assert\Required([
                         new Assert\NotBlank(),
