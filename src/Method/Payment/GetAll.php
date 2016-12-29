@@ -10,7 +10,7 @@ class GetAll implements MethodResultCollectionInterface
 {
     private $limit;
     
-    public function __construct($limit)
+    public function __construct($limit = 10)
     {
         $this->limit = $limit;
     }
