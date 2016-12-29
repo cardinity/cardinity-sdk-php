@@ -16,6 +16,8 @@ More detailed documentation with usage examples can be found [here](https://gith
 ```bash
 $ php composer.phar require cardinity/cardinity-sdk-php
 ```
+### Direct Download
+You can download the [latest release](https://github.com/cardinity/cardinity-sdk-php/releases/latest) file starting with ```cardinity-sdk-php-*.zip```.
 
 ### Making API Calls
 #### Initialize the client object
@@ -42,7 +44,7 @@ $method = new Payment\Create([
         'pan' => '4111111111111111',
         'exp_year' => 2016,
         'exp_month' => 12,
-        'cvc' => 456,
+        'cvc' => '456',
         'holder' => 'Mike Dough'
     ],
 ]);
