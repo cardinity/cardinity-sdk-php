@@ -10,8 +10,6 @@ use Cardinity\Method\ResultObjectMapper;
 use Cardinity\Method\ResultObjectMapperInterface;
 use Cardinity\Method\Validator;
 use Cardinity\Method\ValidatorInterface;
-use GuzzleHttp\Subscriber\Log\Formatter;
-use GuzzleHttp\Subscriber\Log\LogSubscriber;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
 use Symfony\Component\Validator\Validation;
 
@@ -56,22 +54,22 @@ class Client
      */
     public static function create(array $options = [], $logger = Client::LOG_NONE)
     {
-        $client = new \GuzzleHttp\Client([
-            'base_url' => self::$url,
-            'defaults' => ['auth' => 'oauth']
-        ]);
-
-        if ($logger !== false) {
-            $subscriber = new LogSubscriber($logger, Formatter::DEBUG);
-            $client->getEmitter()->attach($subscriber);
-        }
-
         $oauth = new Oauth1([
+            'token_secret' => '',
             'consumer_key' => $options['consumerKey'],
             'consumer_secret' => $options['consumerSecret']
         ]);
-        $client->getEmitter()->attach($oauth);
-
+        $stack = \GuzzleHttp\HandlerStack::create();
+        
+        $stack->push($oauth);
+        
+        $client = new \GuzzleHttp\Client([
+            'base_uri' => self::$url,
+            'handler' => $stack,
+            'auth' => 'oauth',
+            'verify' => false
+        ]);
+        
         $mapper = new ResultObjectMapper();
 
         return new self(
