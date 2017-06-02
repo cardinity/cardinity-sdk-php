@@ -9,8 +9,8 @@ use Cardinity\Method\MethodInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\Message\RequestInterface;
-use GuzzleHttp\Message\ResponseInterface;
+use Psr\Http\Message\RequestInterface;
+use Psr\Http\Message\ResponseInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -24,7 +24,7 @@ class ClientAdapterSpec extends ObjectBehavior
         $this->beConstructedWith($client, $mapper);
 
         $client
-            ->createRequest('POST', 'https://api.cardinity.com/v1/', [])
+            ->request('POST', 'https://api.cardinity.com/v1/', [])
             ->willReturn($request)
         ;
     }
@@ -41,7 +41,7 @@ class ClientAdapterSpec extends ObjectBehavior
         ResponseInterface $response
     ) {
         $response
-            ->json()
+            ->getBody()
             ->shouldBeCalled()
             ->willReturn(['foo' => 'bar'])
         ;

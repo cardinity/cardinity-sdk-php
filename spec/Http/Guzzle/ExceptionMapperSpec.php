@@ -7,8 +7,8 @@ use Cardinity\Method\MethodInterface;
 use Cardinity\Method\Payment\Payment;
 use Cardinity\Method\ResultObjectMapperInterface;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Message\Request;
-use GuzzleHttp\Message\Response;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Response;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 
@@ -34,7 +34,7 @@ class ExceptionMapperSpec extends ObjectBehavior
         Response $response,
         MethodInterface $method
     ) {
-        $response->json()->willReturn([]);
+        $response->getBody()->willReturn([]);
         $response->getStatusCode()->willReturn(400);
         $exception->getResponse()->willReturn($response);
 
@@ -49,7 +49,7 @@ class ExceptionMapperSpec extends ObjectBehavior
         Response $response,
         MethodInterface $method
     ) {
-        $response->json()->willReturn([]);
+        $response->getBody()->willReturn([]);
         $response->getStatusCode()->willReturn(999);
         $exception->getResponse()->willReturn($response);
         
@@ -69,7 +69,7 @@ class ExceptionMapperSpec extends ObjectBehavior
         $resultObject = new Error();
 
         $response->getStatusCode()->willReturn(400);
-        $response->json()->willReturn($result);
+        $response->getBody()->willReturn($result);
 
         $method->createResultObject()->willReturn($resultObject);
         $exception->getResponse()->willReturn($response);
@@ -97,7 +97,7 @@ class ExceptionMapperSpec extends ObjectBehavior
         $resultObject = new Payment();
 
         $response->getStatusCode()->willReturn(402);
-        $response->json()->willReturn($result);
+        $response->getBody()->willReturn($result);
 
         $method->createResultObject()->willReturn($resultObject);
         $exception->getResponse()->willReturn($response);
