@@ -7,9 +7,9 @@
     "require": {
         "php"                       : ">=5.4.0",
         "guzzlehttp/guzzle"         : "^6.0",
-        "guzzlehttp/log-subscriber" : "~1.0",
+        "guzzlehttp/log-subscriber" : "*",
         "guzzlehttp/oauth-subscriber": "0.2.*",
-        "symfony/validator"         : "~2.6"
+        "symfony/validator"         : "*"
     },
     "require-dev": {
         "monolog/monolog"           : "~1.0",
