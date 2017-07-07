@@ -34,8 +34,11 @@ class ExceptionMapperSpec extends ObjectBehavior
         Response $response,
         MethodInterface $method
     ) {
-        $response->getBody()->willReturn([]);
+        $result = [];
+
         $response->getStatusCode()->willReturn(400);
+        $response->getBody()->willReturn(json_encode($result));
+        
         $exception->getResponse()->willReturn($response);
 
         $this
@@ -49,8 +52,11 @@ class ExceptionMapperSpec extends ObjectBehavior
         Response $response,
         MethodInterface $method
     ) {
-        $response->getBody()->willReturn([]);
+        $result = [];
+
         $response->getStatusCode()->willReturn(999);
+        $response->getBody()->willReturn(json_encode($result));
+        
         $exception->getResponse()->willReturn($response);
         
         $this
@@ -69,7 +75,7 @@ class ExceptionMapperSpec extends ObjectBehavior
         $resultObject = new Error();
 
         $response->getStatusCode()->willReturn(400);
-        $response->getBody()->willReturn($result);
+        $response->getBody()->willReturn(json_encode($result));
 
         $method->createResultObject()->willReturn($resultObject);
         $exception->getResponse()->willReturn($response);
@@ -97,7 +103,7 @@ class ExceptionMapperSpec extends ObjectBehavior
         $resultObject = new Payment();
 
         $response->getStatusCode()->willReturn(402);
-        $response->getBody()->willReturn($result);
+        $response->getBody()->willReturn(json_encode($result));
 
         $method->createResultObject()->willReturn($resultObject);
         $exception->getResponse()->willReturn($response);

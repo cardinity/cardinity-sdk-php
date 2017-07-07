@@ -44,15 +44,9 @@ class Client
      *     'consumerKey' => 'foo',
      *     'consumerSecret' => 'bar',
      * ]
-     * @param mixed $logger Logger used to log
-     *     messages. Pass a LoggerInterface to use a PSR-3 logger. Pass a
-     *     callable to log messages to a function that accepts a string of
-     *     data. Pass a resource returned from ``fopen()`` to log to an open
-     *     resource. Pass null or leave empty to write log messages using
-     *     ``echo()``.
      * @return self
      */
-    public static function create(array $options = [], $logger = Client::LOG_NONE)
+    public static function create(array $options = [])
     {
         $oauth = new Oauth1([
             'token_secret' => '',
