@@ -10,6 +10,8 @@ use Cardinity\Method\ResultObjectMapper;
 use Cardinity\Method\ResultObjectMapperInterface;
 use Cardinity\Method\Validator;
 use Cardinity\Method\ValidatorInterface;
+use GuzzleHttp\Middleware;
+use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
 use Symfony\Component\Validator\Validation;
 
@@ -44,9 +46,10 @@ class Client
      *     'consumerKey' => 'foo',
      *     'consumerSecret' => 'bar',
      * ]
+     * @param LoggerInterface $logger Logs messages.
      * @return self
      */
-    public static function create(array $options = [])
+    public static function create(array $options = [], $logger = Client::LOG_NONE)
     {
         $oauth = new Oauth1([
             'token_secret' => '',
@@ -54,16 +57,21 @@ class Client
             'consumer_secret' => $options['consumerSecret']
         ]);
         $stack = \GuzzleHttp\HandlerStack::create();
-        
+
         $stack->push($oauth);
-        
+
+        if (!empty($logger)) {
+            $stack->push(
+                Middleware::log($logger, new MessageFormatter(MessageFormatter::DEBUG))
+            );
+        }
+
         $client = new \GuzzleHttp\Client([
             'base_uri' => self::$url,
             'handler' => $stack,
-            'auth' => 'oauth',
-            'verify' => false
+            'auth' => 'oauth'
         ]);
-        
+
         $mapper = new ResultObjectMapper();
 
         return new self(
