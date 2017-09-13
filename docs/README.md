@@ -28,9 +28,9 @@ $method = new Payment\Create([
     'payment_method' => Payment\Create::CARD,
     'payment_instrument' => [
         'pan' => '4111111111111111',
-        'exp_year' => 2016,
+        'exp_year' => 2018,
         'exp_month' => 12,
-        'cvc' => 456,
+        'cvc' => '456',
         'holder' => 'Mike Dough'
     ],
 ]);
@@ -57,9 +57,9 @@ $method = new Payment\Create([
     'payment_method' => Payment\Create::RECURRING,
     'payment_instrument' => [
         'pan' => '4111111111111111',
-        'exp_year' => 2016,
+        'exp_year' => 2018,
         'exp_month' => 12,
-        'cvc' => 456,
+        'cvc' => '456',
         'holder' => 'Mike Dough'
     ],
 ]);
@@ -362,13 +362,12 @@ Catching this exception ensures that you handle all cardinity failure use cases.
 
 ### Debug, log request/response
 `Client::create()` accepts second argument, which defines the logger. 
-Available values: `Client::LOG_NONE`, `Client::LOG_DEBUG` or PSR-3 `LoggerInterface`.
+Available values: `Client::LOG_NONE` or PSR-3 `LoggerInterface`.
 - `Client::LOG_NONE` - log disabled.
-- `Client::LOG_DEBUG` - logs request/response with direct output to the screen.
 - `LoggerInterface` - custom logger implementation, for eg. `Monolog`.
 
 ```php
-$client = Client::create($config, Client::LOG_DEBUG);
+$client = Client::create($config, Client::LOG_NONE);
 ```
 
 ### Use Monolog for logging

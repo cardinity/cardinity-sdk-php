@@ -5,10 +5,9 @@
     "license": "MIT",
     "homepage": "http://cardinity.com",
     "require": {
-        "php"                       : ">=5.4.0",
-        "guzzlehttp/guzzle"         : "^6.0",
-        "guzzlehttp/log-subscriber" : "*",
-        "guzzlehttp/oauth-subscriber": "*",
+        "php"                       : ">=5.5.9",
+        "guzzlehttp/guzzle"         : "^6.2.1",
+        "guzzlehttp/oauth-subscriber": "0.3.*",
         "symfony/validator"         : "*"
     },
     "require-dev": {

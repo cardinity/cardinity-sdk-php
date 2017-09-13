@@ -3,7 +3,6 @@
 namespace Cardinity\Method;
 
 use Cardinity\Exception;
-use Cardinity\Method\MethodInterface;
 use Cardinity\Method\MethodResultCollectionInterface;
 use Cardinity\Method\Payment\AuthorizationInformation;
 use Cardinity\Method\Payment\PaymentInstrumentCard;
