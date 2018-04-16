@@ -1,6 +1,6 @@
 <?php
 
-namespace Cardinity\Method\Void;
+namespace Cardinity\Method\VoidPayment;
 
 use Cardinity\Method\MethodInterface;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -39,7 +39,7 @@ class Create implements MethodInterface
 
     public function createResultObject()
     {
-        return new Void();
+        return new VoidPayment();
     }
 
     public function getValidationConstraints()

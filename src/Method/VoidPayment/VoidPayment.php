@@ -1,12 +1,12 @@
 <?php
 
-namespace Cardinity\Method\Void;
+namespace Cardinity\Method\VoidPayment;
 
 use Cardinity\Method\ResultObject;
 
-class Void extends ResultObject
+class VoidPayment extends ResultObject
 {
-    /** @type string ID of the vpod.
+    /** @type string ID of the void.
         Value assigned by Cardinity. */
     private $id;
 
@@ -16,7 +16,7 @@ class Void extends ResultObject
 
     /** @type string Void creation time as defined in RFC 3339 Section 5.6.
         UTC timezone.
-        Value assignedsp by Cardinity. */
+        Value assigned by Cardinity. */
     private $created;
 
     /** @type boolean Indicates whether a void was made in live or testing

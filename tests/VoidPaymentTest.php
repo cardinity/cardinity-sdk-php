@@ -2,14 +2,14 @@
 
 namespace Cardinity\Tests;
 
-use Cardinity\Method\Void;
+use Cardinity\Method\VoidPayment;
 use Cardinity\Method\Payment;
 
-class VoidTest extends ClientTestCase
+class VoidPaymentTest extends ClientTestCase
 {
     public function testResultObjectSerialization()
     {
-        $refund = new Void\Void();
+        $refund = new VoidPayment\VoidPayment();
         $refund->setId('foo');
         $refund->setType('bar');
         $refund->setCreated(null);
@@ -24,7 +24,7 @@ class VoidTest extends ClientTestCase
     {
         $json = '{"id":"foo","type":"bar"}';
 
-        $payment = new Void\Void();
+        $payment = new VoidPayment\VoidPayment();
         $payment->unserialize($json);
 
         $this->assertSame('foo', $payment->getId());
@@ -49,7 +49,7 @@ class VoidTest extends ClientTestCase
      */
     public function testCreateFail(Payment\Payment $payment)
     {
-        $method = new Void\Create(
+        $method = new VoidPayment\Create(
             $payment->getId(),
             'fail'
         );
@@ -61,13 +61,13 @@ class VoidTest extends ClientTestCase
      */
     public function testCreate(Payment\Payment $payment)
     {
-        $method = new Void\Create(
+        $method = new VoidPayment\Create(
             $payment->getId(),
             'my description'
         );
         $result = $this->client->call($method);
 
-        $this->assertInstanceOf('Cardinity\Method\Void\Void', $result);
+        $this->assertInstanceOf('Cardinity\Method\VoidPayment\VoidPayment', $result);
 
         return $result;
     }
@@ -75,15 +75,15 @@ class VoidTest extends ClientTestCase
     /**
      * @depends testCreate
      */
-    public function testGet(Void\Void $void)
+    public function testGet(VoidPayment\VoidPayment $void)
     {
-        $method = new Void\Get(
+        $method = new VoidPayment\Get(
             $void->getParentId(),
             $void->getId()
         );
         $result = $this->client->call($method);
 
-        $this->assertInstanceOf('Cardinity\Method\Void\Void', $result);
+        $this->assertInstanceOf('Cardinity\Method\VoidPayment\VoidPayment', $result);
         $this->assertSame($void->getParentId(), $result->getParentId());
         $this->assertSame('void', $result->getType());
         $this->assertSame('my description', $result->getDescription());
@@ -92,14 +92,14 @@ class VoidTest extends ClientTestCase
     /**
      * @depends testCreate
      */
-    public function testGetAll(Void\Void $void)
+    public function testGetAll(VoidPayment\VoidPayment $void)
     {
-        $method = new Void\GetAll(
+        $method = new VoidPayment\GetAll(
             $void->getParentId()
         );
         $result = $this->client->call($method);
 
-        $this->assertInstanceOf('Cardinity\Method\Void\Void', $result[0]);
+        $this->assertInstanceOf('Cardinity\Method\VoidPayment\VoidPayment', $result[0]);
         $this->assertSame($void->getId(), $result[0]->getId());
         $this->assertSame($void->getParentId(), $result[0]->getParentId());
     }

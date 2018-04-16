@@ -242,12 +242,12 @@ $settlement = $result[0];
 ## Voids [API](https://developers.cardinity.com/api/v1/#voids)
 ### Create new void
 ```php
-use Cardinity\Method\Void;
-$method = new Void\Create(
+use Cardinity\Method\VoidPayment;
+$method = new VoidPayment\Create(
     $payment->getId(),
     'my description'
 );
-/** @type Cardinity\Method\Void\Void */
+/** @type Cardinity\Method\VoidPayment\VoidPayment */
 $result = $client->call($method);
 ```
 
@@ -257,18 +257,18 @@ exception will be thrown.
 
 ```php
 use Cardinity\Exception;
-use Cardinity\Method\Void;
+use Cardinity\Method\VoidPayment;
 
-$method = new Void\Create(
+$method = new VoidPayment\Create(
     $payment->getId(),
     'fail'
 );
 
 try {
-    /** @type Cardinity\Method\Void\Void */
+    /** @type Cardinity\Method\VoidPayment\VoidPayment */
     $void = $client->call($method);
 } catch (Exception\Declined $exception) {
-    /** @type Cardinity\Method\Void\Void */
+    /** @type Cardinity\Method\VoidPayment\VoidPayment */
     $void = $exception->getResult();
     $status = $void->getStatus(); // value will be 'declined'
     $errors = $exception->getErrors(); // list of errors occured
@@ -277,23 +277,23 @@ try {
 
 ### Get existing void
 ```php
-use Cardinity\Method\Void;
-$method = new Void\Get(
+use Cardinity\Method\VoidPayment;
+$method = new VoidPayment\Get(
     $payment->getId(),
     $void->getId()
 );
-/** @type Cardinity\Method\Void\Void */
+/** @type Cardinity\Method\VoidPayment\VoidPayment */
 $void = $client->call($method);
 ```
 
 ### Get all voids
 ```php
-use Cardinity\Method\Void;
-$method = new Void\GetAll(
+use Cardinity\Method\VoidPayment;
+$method = new VoidPayment\GetAll(
     $payment->getId()
 );
 $result = $client->call($method);
-/** @type Cardinity\Method\Void\Void */
+/** @type Cardinity\Method\VoidPayment\VoidPayment */
 $void = $result[0];
 ```
 

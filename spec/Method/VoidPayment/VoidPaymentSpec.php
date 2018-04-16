@@ -1,10 +1,10 @@
 <?php
 
-namespace spec\Cardinity\Method\Void;
+namespace spec\Cardinity\Method\VoidPayment;
 
 use PhpSpec\ObjectBehavior;
 
-class VoidSpec extends ObjectBehavior
+class VoidPaymentSpec extends ObjectBehavior
 {
     function it_implements_result_object_behaviour()
     {

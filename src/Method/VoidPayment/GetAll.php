@@ -1,27 +1,25 @@
 <?php
 
-namespace Cardinity\Method\Void;
+namespace Cardinity\Method\VoidPayment;
 
 use Cardinity\Method\MethodInterface;
+use Cardinity\Method\MethodResultCollectionInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
-class Get implements MethodInterface
+class GetAll implements MethodResultCollectionInterface
 {
     private $paymentId;
-    private $voidId;
 
-    public function __construct($paymentId, $voidId)
+    public function __construct($paymentId)
     {
         $this->paymentId = $paymentId;
-        $this->voidId = $voidId;
     }
 
     public function getAction()
     {
         return sprintf(
-            'payments/%s/voids/%s',
-            $this->getPaymentId(),
-            $this->getvoidId()
+            'payments/%s/voids',
+            $this->getPaymentId()
         );
     }
 
@@ -32,7 +30,7 @@ class Get implements MethodInterface
 
     public function createResultObject()
     {
-        return new Void();
+        return new VoidPayment();
     }
 
     public function getAttributes()
@@ -48,10 +46,5 @@ class Get implements MethodInterface
     public function getPaymentId()
     {
         return $this->paymentId;
-    }
-
-    public function getvoidId()
-    {
-        return $this->voidId;
     }
 }

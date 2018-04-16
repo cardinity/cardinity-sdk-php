@@ -1,6 +1,6 @@
 <?php
 
-namespace spec\Cardinity\Method\Void;
+namespace spec\Cardinity\Method\VoidPayment;
 
 use PhpSpec\ObjectBehavior;
 
@@ -52,7 +52,7 @@ class CreateSpec extends ObjectBehavior
 
     function it_creates_result_object()
     {
-        $this->createResultObject()->shouldReturnAnInstanceOf('Cardinity\Method\Void\Void');
+        $this->createResultObject()->shouldReturnAnInstanceOf('Cardinity\Method\VoidPayment\VoidPayment');
     }
 
     function it_has_validation_constraints()
