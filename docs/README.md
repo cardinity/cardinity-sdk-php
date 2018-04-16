@@ -346,10 +346,6 @@ Class: `Cardinity\Exception\InvalidAttributeValue`
 Methods:  
 - `getViolations()` returns list of validation violations
 
-#### Response mapping to result object failure
-Class: `Cardinity\Exception\ResultObjectInterfacePropertyNotFound`  
-Got unexpected response? Response object changed?
-
 #### Unexpected error
 Class: `Cardinity\Exception\UnexpectedError`
 
