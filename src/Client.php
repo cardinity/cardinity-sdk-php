@@ -6,10 +6,12 @@ use Cardinity\Http\ClientInterface;
 use Cardinity\Http\Guzzle;
 use Cardinity\Method\MethodInterface;
 use Cardinity\Method\MethodResultCollectionInterface;
+use Cardinity\Method\ResultObjectInterface;
 use Cardinity\Method\ResultObjectMapper;
 use Cardinity\Method\ResultObjectMapperInterface;
 use Cardinity\Method\Validator;
 use Cardinity\Method\ValidatorInterface;
+use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Middleware;
 use GuzzleHttp\MessageFormatter;
 use GuzzleHttp\Subscriber\Oauth\Oauth1;
@@ -56,7 +58,7 @@ class Client
             'consumer_key' => $options['consumerKey'],
             'consumer_secret' => $options['consumerSecret']
         ]);
-        $stack = \GuzzleHttp\HandlerStack::create();
+        $stack = HandlerStack::create();
 
         $stack->push($oauth);
 
@@ -80,6 +82,7 @@ class Client
             $mapper
         );
     }
+
     /**
      * @param ClientInterface $client
      * @param ValidatorInterface $validator

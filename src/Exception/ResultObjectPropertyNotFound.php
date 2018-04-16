@@ -2,7 +2,7 @@
 
 namespace Cardinity\Exception;
 
-class ResultObjectInterfacePropertyNotFound extends Runtime
+class ResultObjectPropertyNotFound extends Runtime
 {
 
 }

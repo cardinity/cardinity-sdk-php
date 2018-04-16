@@ -2,17 +2,13 @@
 
 namespace spec\Cardinity\Http\Guzzle;
 
-use Cardinity\Exception;
 use Cardinity\Http\ClientInterface;
 use Cardinity\Http\Guzzle\ExceptionMapper;
 use Cardinity\Method\MethodInterface;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
-use GuzzleHttp\Exception\RequestException;
-use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class ClientAdapterSpec extends ObjectBehavior
 {

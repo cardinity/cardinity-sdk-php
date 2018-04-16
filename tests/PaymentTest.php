@@ -1,4 +1,5 @@
 <?php
+
 namespace Cardinity\Tests;
 
 use Cardinity\Exception;
@@ -18,7 +19,7 @@ class PaymentTest extends ClientTestCase
         $card = new Payment\PaymentInstrumentCard();
         $card->setCardBrand('Visa');
         $card->setPan('4447');
-        $card->setExpYear(2017);
+        $card->setExpYear(2021);
         $card->setExpMonth(5);
         $card->setHolder('John Smith');
         $payment->setPaymentInstrument($card);
@@ -29,14 +30,14 @@ class PaymentTest extends ClientTestCase
         $payment->setAuthorizationInformation($info);
 
         $this->assertSame(
-            '{"id":"foo","amount":"55.00","type":"bar","payment_method":"card","payment_instrument":{"card_brand":"Visa","pan":"4447","exp_year":2017,"exp_month":5,"holder":"John Smith"},"authorization_information":{"url":"http:\/\/...","data":"some_data"}}',
+            '{"id":"foo","amount":"55.00","type":"bar","payment_method":"card","payment_instrument":{"card_brand":"Visa","pan":"4447","exp_year":2021,"exp_month":5,"holder":"John Smith"},"authorization_information":{"url":"http:\/\/...","data":"some_data"}}',
             $payment->serialize()
         );
     }
 
     public function testResultObjectUnserialization()
     {
-        $json = '{"id":"foo","amount":"55.00","type":"bar","payment_method":"card","payment_instrument":{"card_brand":"Visa","pan":"4447","exp_year":2017,"exp_month":5,"holder":"John Smith"},"authorization_information":{"url":"http:\/\/...","data":"some_data"}}';
+        $json = '{"id":"foo","amount":"55.00","type":"bar","payment_method":"card","payment_instrument":{"card_brand":"Visa","pan":"4447","exp_year":2021,"exp_month":5,"holder":"John Smith"},"authorization_information":{"url":"http:\/\/...","data":"some_data"}}';
 
         $payment = new Payment\Payment();
         $payment->unserialize($json);
@@ -53,17 +54,17 @@ class PaymentTest extends ClientTestCase
 
     /**
      * @expectedException Cardinity\Exception\InvalidAttributeValue
-     * @dataProvider invalidaAmountValuesData
+     * @dataProvider invalidAmountValuesData
      */
     public function testAmountValidationConstraint($amount)
     {
         $params = $this->getPaymentParams();
         $params['amount'] = $amount;
         $method = new Payment\Create($params);
-        $result = $this->client->call($method);
+        $this->client->call($method);
     }
 
-    public function invalidaAmountValuesData()
+    public function invalidAmountValuesData()
     {
         return [
             ['150.01'],
@@ -79,7 +80,7 @@ class PaymentTest extends ClientTestCase
         $params = $this->getPaymentParams();
         unset($params['currency']);
         $method = new Payment\Create($params);
-        $result = $this->client->call($method);
+        $this->client->call($method);
     }
 
     /**
@@ -93,7 +94,7 @@ class PaymentTest extends ClientTestCase
 
         try {
             $method = new Payment\Create($params);
-            $result = $this->client->call($method);
+            $this->client->call($method);
         } catch (Exception\Declined $e) {
             $result = $e->getResult();
 
@@ -118,7 +119,7 @@ class PaymentTest extends ClientTestCase
 
         try {
             $method = new Payment\Create($params);
-            $result = $this->client->callNoValidate($method);
+            $this->client->callNoValidate($method);
         } catch (Exception\ValidationFailed $e) {
             $result = $e->getResult();
 
@@ -140,7 +141,7 @@ class PaymentTest extends ClientTestCase
         $params['payment_instrument']['exp_month'] = 13;
 
         $method = new Payment\Create($params);
-        $result = $this->client->call($method);
+        $this->client->call($method);
     }
 
     public function testCreate()
@@ -221,7 +222,7 @@ class PaymentTest extends ClientTestCase
 
         try {
             $method = new Payment\Finalize($paymentId, $authorizationInformation);
-            $result = $this->client->call($method);
+            $this->client->call($method);
         } catch (Exception\Declined $e) {
             $result = $e->getResult();
 

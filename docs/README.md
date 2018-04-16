@@ -28,7 +28,7 @@ $method = new Payment\Create([
     'payment_method' => Payment\Create::CARD,
     'payment_instrument' => [
         'pan' => '4111111111111111',
-        'exp_year' => 2018,
+        'exp_year' => 2021,
         'exp_month' => 12,
         'cvc' => '456',
         'holder' => 'Mike Dough'
@@ -57,7 +57,7 @@ $method = new Payment\Create([
     'payment_method' => Payment\Create::RECURRING,
     'payment_instrument' => [
         'pan' => '4111111111111111',
-        'exp_year' => 2018,
+        'exp_year' => 2021,
         'exp_month' => 12,
         'cvc' => '456',
         'holder' => 'Mike Dough'
@@ -303,8 +303,8 @@ $void = $result[0];
 #### Base class for API error response exceptions
 Class: `Cardinity\Exception\Request`  
 Methods:  
-- `getErrors()` returns list of errors occured
-- `getErrorsAsString()` returns list of errors occured in string form
+- `getErrors()` returns list of errors occurred
+- `getErrorsAsString()` returns list of errors occurred in string form
 - `getResult()` returns object, the instance of `ResultObjectInterface`.
 
 #### All classes

@@ -3,7 +3,6 @@
 namespace spec\Cardinity\Method\Void;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class VoidSpec extends ObjectBehavior
 {

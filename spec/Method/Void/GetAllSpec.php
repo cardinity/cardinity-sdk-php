@@ -3,7 +3,6 @@
 namespace spec\Cardinity\Method\Void;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class GetAllSpec extends ObjectBehavior
 {
@@ -26,9 +25,7 @@ class GetAllSpec extends ObjectBehavior
 
     function it_has_action()
     {
-        $this->getAction()->shouldReturn(
-            'payments/' . $this->paymentId . '/voids'
-        );
+        $this->getAction()->shouldReturn('payments/' . $this->paymentId . '/voids');
     }
 
     function it_has_method()
@@ -43,16 +40,11 @@ class GetAllSpec extends ObjectBehavior
 
     function it_has_create_result()
     {
-        $this->createResultObject()
-            ->shouldReturnAnInstanceOf('Cardinity\Method\Void\Void')
-        ;
+        $this->createResultObject()->shouldReturnAnInstanceOf('Cardinity\Method\Void\Void');
     }
 
     function it_has_validation_constraints()
     {
-        $this
-            ->getValidationConstraints()
-            ->shouldReturnAnInstanceOf('Symfony\Component\Validator\Constraint')
-        ;
+        $this->getValidationConstraints()->shouldReturnAnInstanceOf('Symfony\Component\Validator\Constraint');
     }
 }
