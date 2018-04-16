@@ -6,8 +6,9 @@ use Cardinity\Client;
 use Monolog\Handler\StreamHandler;
 use Monolog\Logger;
 use Cardinity\Method\Payment;
+use PHPUnit\Framework\TestCase;
 
-class ClientTestCase extends \PHPUnit_Framework_TestCase
+class ClientTestCase extends TestCase
 {
     public function setUp()
     {
@@ -42,7 +43,7 @@ class ClientTestCase extends \PHPUnit_Framework_TestCase
             'payment_method' => Payment\Create::CARD,
             'payment_instrument' => [
                 'pan' => '4111111111111111',
-                'exp_year' => 2018,
+                'exp_year' => 2021,
                 'exp_month' => 12,
                 'cvc' => '456',
                 'holder' => 'Mike Dough'

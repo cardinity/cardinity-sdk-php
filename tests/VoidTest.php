@@ -1,4 +1,5 @@
 <?php
+
 namespace Cardinity\Tests;
 
 use Cardinity\Method\Void;
@@ -66,7 +67,7 @@ class VoidTest extends ClientTestCase
         );
         $result = $this->client->call($method);
 
-        $this->assertInstanceOf('Cardinity\Method\Void\Void', $result); 
+        $this->assertInstanceOf('Cardinity\Method\Void\Void', $result);
 
         return $result;
     }
@@ -82,7 +83,7 @@ class VoidTest extends ClientTestCase
         );
         $result = $this->client->call($method);
 
-        $this->assertInstanceOf('Cardinity\Method\Void\Void', $result); 
+        $this->assertInstanceOf('Cardinity\Method\Void\Void', $result);
         $this->assertSame($void->getParentId(), $result->getParentId());
         $this->assertSame('void', $result->getType());
         $this->assertSame('my description', $result->getDescription());
@@ -98,7 +99,7 @@ class VoidTest extends ClientTestCase
         );
         $result = $this->client->call($method);
 
-        $this->assertInstanceOf('Cardinity\Method\Void\Void', $result[0]); 
+        $this->assertInstanceOf('Cardinity\Method\Void\Void', $result[0]);
         $this->assertSame($void->getId(), $result[0]->getId());
         $this->assertSame($void->getParentId(), $result[0]->getParentId());
     }

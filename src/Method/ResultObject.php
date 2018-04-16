@@ -34,7 +34,7 @@ abstract class ResultObject implements ResultObjectInterface
     /**
      * Serializes result object to json object
      * @param boolean $toJson encode result to json
-     * @return string
+     * @return array|object
      */
     public function serialize($toJson = true)
     {
@@ -102,6 +102,7 @@ abstract class ResultObject implements ResultObjectInterface
 
     /**
      * @param string $class
+     * @return array
      */
     private function classGetters($class)
     {
@@ -121,13 +122,22 @@ abstract class ResultObject implements ResultObjectInterface
         });
     }
 
+    /**
+     * @param string $method
+     * @return string
+     */
     private function propertyName($method)
     {
         $method = lcfirst(substr($method, 3));
         $method = strtolower(preg_replace('/([a-z])([A-Z])/', '$1_$2', $method));
+
         return $method;
     }
 
+    /**
+     * @param string $property
+     * @return string
+     */
     private function setterName($property)
     {
         $parts = explode('_', $property);
