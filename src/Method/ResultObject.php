@@ -86,10 +86,16 @@ abstract class ResultObject implements ResultObjectInterface
                         throw new Exception\Runtime('Property "payment_method" is missing');
                     }
 
-                    if ($data->payment_method == Payment\Create::CARD) {
-                        $object = new PaymentInstrumentCard();
-                    } elseif ($data->payment_method == Payment\Create::RECURRING) {
-                        $object = new PaymentInstrumentRecurring();
+                    switch ($data->payment_method) {
+                        case Payment\Create::CARD:
+                            $object = new PaymentInstrumentCard();
+                            break;
+                        case Payment\Create::RECURRING:
+                            $object = new PaymentInstrumentRecurring();
+                            break;
+                        default:
+                            $object = new PaymentInstrumentCard();
+                            break;
                     }
                     $object->unserialize(json_encode($value));
                     $value = $object;

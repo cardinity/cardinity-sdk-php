@@ -58,8 +58,8 @@ class Client
             'consumer_key' => $options['consumerKey'],
             'consumer_secret' => $options['consumerSecret']
         ]);
-        $stack = HandlerStack::create();
 
+        $stack = HandlerStack::create();
         $stack->push($oauth);
 
         if (!empty($logger)) {
