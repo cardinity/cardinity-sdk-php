@@ -68,6 +68,7 @@ class VoidPaymentTest extends ClientTestCase
         $result = $this->client->call($method);
 
         $this->assertInstanceOf('Cardinity\Method\VoidPayment\VoidPayment', $result);
+        $this->assertSame(true, $result->isApproved());
 
         return $result;
     }

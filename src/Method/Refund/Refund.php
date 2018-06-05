@@ -265,4 +265,22 @@ class Refund extends ResultObject
     {
         $this->description = $description;
     }
+
+    /**
+     * Check if refund is approved
+     * @return boolean
+     */
+    public function isApproved()
+    {
+        return $this->getStatus() === 'approved';
+    }
+
+    /**
+     * Check if refund is declined
+     * @return boolean
+     */
+    public function isDeclined()
+    {
+        return $this->getStatus() === 'declined';
+    }
 }

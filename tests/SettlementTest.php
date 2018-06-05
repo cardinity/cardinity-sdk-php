@@ -73,6 +73,7 @@ class SettlementTest extends ClientTestCase
 
         $this->assertInstanceOf('Cardinity\Method\Settlement\Settlement', $result);
         $this->assertSame('10.00', $result->getAmount());
+        $this->assertSame(true, $result->isApproved());
 
         return $result;
     }

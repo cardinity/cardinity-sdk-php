@@ -400,4 +400,13 @@ class Payment extends ResultObject
     {
         return $this->getStatus() === 'approved';
     }
+
+    /**
+     * Check if payment is declined
+     * @return boolean
+     */
+    public function isDeclined()
+    {
+        return $this->getStatus() === 'declined';
+    }
 }

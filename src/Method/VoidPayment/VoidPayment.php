@@ -218,4 +218,22 @@ class VoidPayment extends ResultObject
     {
         $this->description = $description;
     }
+
+    /**
+     * Check if void is approved
+     * @return boolean
+     */
+    public function isApproved()
+    {
+        return $this->getStatus() === 'approved';
+    }
+
+    /**
+     * Check if void is declined
+     * @return boolean
+     */
+    public function isDeclined()
+    {
+        return $this->getStatus() === 'declined';
+    }
 }

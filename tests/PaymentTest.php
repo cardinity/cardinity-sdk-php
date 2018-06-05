@@ -100,6 +100,7 @@ class PaymentTest extends ClientTestCase
 
             $this->assertInstanceOf('Cardinity\Method\Payment\Payment', $result);
             $this->assertSame('declined', $result->getStatus());
+            $this->assertSame(true, $result->isDeclined());
             $this->assertSame('CRD-TEST: Do Not Honor', $result->getError());
             $this->assertContains('status: CRD-TEST: Do Not Honor;', $e->getErrorsAsString());
 
@@ -152,6 +153,7 @@ class PaymentTest extends ClientTestCase
 
         $this->assertInstanceOf('Cardinity\Method\Payment\Payment', $result);
         $this->assertSame('approved', $result->getStatus());
+        $this->assertSame(true, $result->isApproved());
 
         return $result;
     }
@@ -172,6 +174,7 @@ class PaymentTest extends ClientTestCase
 
         $this->assertInstanceOf('Cardinity\Method\Payment\Payment', $result);
         $this->assertSame('approved', $result->getStatus());
+        $this->assertSame(true, $result->isApproved());
 
         return $result;
     }
@@ -186,6 +189,7 @@ class PaymentTest extends ClientTestCase
 
         $this->assertInstanceOf('Cardinity\Method\Payment\Payment', $result);
         $this->assertSame('approved', $result->getStatus());
+        $this->assertSame(true, $result->isApproved());
     }
 
     public function testGetAll()
@@ -207,6 +211,7 @@ class PaymentTest extends ClientTestCase
 
         $this->assertInstanceOf('Cardinity\Method\Payment\Payment', $result);
         $this->assertSame('pending', $result->getStatus());
+        $this->assertSame(true, $result->isPending());
         $this->assertSame('3d-fail', $result->getAuthorizationInformation()->getData());
 
         return $result;
@@ -228,6 +233,7 @@ class PaymentTest extends ClientTestCase
 
             $this->assertInstanceOf('Cardinity\Method\Payment\Payment', $result);
             $this->assertSame('declined', $result->getStatus());
+            $this->assertSame(true, $result->isDeclined());
             $this->assertContains('status: 33333: 3D Secure Authorization Failed.;', $e->getErrorsAsString());
 
             return;
@@ -246,6 +252,7 @@ class PaymentTest extends ClientTestCase
 
         $this->assertInstanceOf('Cardinity\Method\Payment\Payment', $result);
         $this->assertSame('pending', $result->getStatus());
+        $this->assertSame(true, $result->isPending());
         $this->assertSame('3d-pass', $result->getAuthorizationInformation()->getData());
 
         return $result;
@@ -264,5 +271,6 @@ class PaymentTest extends ClientTestCase
 
         $this->assertInstanceOf('Cardinity\Method\Payment\Payment', $result);
         $this->assertSame('approved', $result->getStatus());
+        $this->assertSame(true, $result->isApproved());
     }
 }

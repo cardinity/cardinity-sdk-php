@@ -265,4 +265,22 @@ class Settlement extends ResultObject
     {
         $this->description = $description;
     }
+
+    /**
+     * Check if settlement is approved
+     * @return boolean
+     */
+    public function isApproved()
+    {
+        return $this->getStatus() === 'approved';
+    }
+
+    /**
+     * Check if settlement is declined
+     * @return boolean
+     */
+    public function isDeclined()
+    {
+        return $this->getStatus() === 'declined';
+    }
 }
