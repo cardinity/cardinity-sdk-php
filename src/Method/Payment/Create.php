@@ -81,7 +81,8 @@ class Create implements MethodInterface
                     'choices' => [
                         self::CARD,
                         self::RECURRING
-                    ]
+                    ],
+                    'strict' => true
                 ])
             ]),
             'payment_instrument' => $this->getPaymentInstrumentConstraints(
