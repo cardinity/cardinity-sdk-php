@@ -1,5 +1,10 @@
 # Cardinity Client PHP Library
 
+## v2.2.0
+
+### Added
+- Allow symfony/validator v5.x
+
 ## v2.1.0
 
 ### Added
