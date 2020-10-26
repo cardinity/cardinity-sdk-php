@@ -7,7 +7,7 @@ class ThreeDS2AuthorizationInformation
     /** @var STRING */
     private $acsUrl;
 
-    /** @var STRING should serialize? */
+    /** @var STRING */
     private $cReq;
 
 
@@ -24,7 +24,7 @@ class ThreeDS2AuthorizationInformation
      * @param STRING
      * @return VOID
      */
-    public function setAcsUrl(string $acsUrl)
+    public function setAcsUrl(string $acsUrl) : void
     {
         $this->acsUrl = $acsUrl;
     }
@@ -43,7 +43,7 @@ class ThreeDS2AuthorizationInformation
      * @param STRING
      * @return VOID
      */
-    public function setCReq(string $cReq)
+    public function setCReq(string $cReq) : void
     {
         $this->cReq = $cReq;
     }

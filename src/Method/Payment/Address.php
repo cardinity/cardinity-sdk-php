@@ -2,10 +2,9 @@
 
 namespace Cardinity\Method\Payment;
 
-use Cardinity\Method\ResultObject;
 
 
-class Address extends ResultObject
+class Address
 {
     
     /** @var string */
@@ -43,7 +42,7 @@ class Address extends ResultObject
      * @param STRING of address line 1
      * @return VOID
      */
-    public function setAddressLine1(string $addressLine1)
+    public function setAddressLine1(string $addressLine1) : void
     {
         $this->addressLine1 = $addressLine1;
     }
@@ -62,7 +61,7 @@ class Address extends ResultObject
      * @param STRING of address line 2
      * @return VOID
      */
-    public function setAddressLine2(string $addressLine2)
+    public function setAddressLine2(string $addressLine2) : void
     {
         $this->addressLine2 = $addressLine2;
     }
@@ -81,7 +80,7 @@ class Address extends ResultObject
      * @param STRING of address line 3
      * @return VOID
      */
-    public function setAddressLine3(string $addressLine3)
+    public function setAddressLine3(string $addressLine3) : void
     {
         $this->addressLine3 = $addressLine3;
     }
@@ -100,7 +99,7 @@ class Address extends ResultObject
      * @param STRING of city
      * @return VOID
      */
-    public function setCity(string $city)
+    public function setCity(string $city) : void
     {
         $this->city = $city;
     }
@@ -119,7 +118,7 @@ class Address extends ResultObject
      * @param STRING of country
      * @return VOID
      */
-    public function setCountry(string $country)
+    public function setCountry(string $country) : void
     {
         $this->country = $country;
     }
@@ -137,7 +136,7 @@ class Address extends ResultObject
      * @param STRING of postal code
      * @return VOID
      */
-    public function setPostalCode(string $postalCode)
+    public function setPostalCode(string $postalCode) : void
     {
         $this->postalCode = $postalCode;
     }
@@ -156,7 +155,7 @@ class Address extends ResultObject
      * @param STRING of state
      * @return VOID
      */
-    public function setState(string $state)
+    public function setState(string $state) : void
     {
         $this->state = $state;
     }

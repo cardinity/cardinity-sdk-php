@@ -58,7 +58,7 @@ class Create implements MethodInterface
             'payment_instrument' => $this->getPaymentInstrumentConstraints(
                 $this->getAttributes()['payment_method']
             ),
-            'threeDS2Data' => new Assert\Optional([$this->getTrheeDS2DataConstraints()])
+            'threeds2_data' => new Assert\Optional([$this->getTrheeDS2DataConstraints()])
         ]);
     }
 
@@ -94,31 +94,31 @@ class Create implements MethodInterface
         );
     }
 
-    private function getTrheeDS2DataConstraints()
+    private function getThreeDS2DataConstraints()
     {
         return new Assert\Collection([
-            'notificationUrl' => $this->buildElement('string', 1),
-            'browserInfo' => $this->getBrowserInfoConstraints(),
-            'billingAddress' => $this->getAdressConstraints('billingAddress'),
-            'deliveryAddress' => $this->getAdressConstraints('deliveryAddress'),
-            'cardHolderInfo' => $this->getCardHolderInfoConstraints(),
+            'notification_url' => $this->buildElement('string', 1),
+            'browser_info' => $this->getBrowserInfoConstraints(),
+            'billing_address' => $this->getAdressConstraints('billingAddress'),
+            'delivery_address' => $this->getAdressConstraints('deliveryAddress'),
+            'cardholder_info' => $this->getCardHolderInfoConstraints(),
         ]);
     }
 
     private function getBrowserInfoConstraints()
     {
         return new Assert\Collection([
-            'acceptHeader' => $this->buildElement('string', 1),
-            'browserLanguage' => $this->buildElement('string', 1), // TODO should implement standard IETF BCP 47 (https://tools.ietf.org/html/bcp47)
-            'screenWidth' => $this->buildElement('integer', 1),
-            'screenHeight' => $this->buildElement('integer', 1),
-            'challengeWindowSize' => $this->buildElement('string', 1),
-            'userAgent' => $this->buildElement('string', 1),
-            'colorDepth' => $this->buildElement('integer', 1),
-            'timeZone' => $this->buildElement('integer', 1),
-            'ipAddress' => $this->buildElement('string'),
-            'javaEnabled' => $this->buildElement('bool'),
-            'javascriptEnabled' => $this->buildElement('bool'),
+            'accept_header' => $this->buildElement('string', 1),
+            'browser_language' => $this->buildElement('string', 1),
+            'screen_width' => $this->buildElement('integer', 1),
+            'screen_height' => $this->buildElement('integer', 1),
+            'challenge_window_size' => $this->buildElement('string', 1),
+            'user_agent' => $this->buildElement('string', 1),
+            'color_depth' => $this->buildElement('integer', 1),
+            'time_zone' => $this->buildElement('integer', 1),
+            'ip_address' => $this->buildElement('string'),
+            'javascript_enabled' => $this->buildElement('bool'),
+            'java_enabled' => $this->buildElement('bool'),
         ]);
     }
 
@@ -129,9 +129,9 @@ class Create implements MethodInterface
             'address_line2' => $this->buildElement('string', 1, ['max'=>50]),
             'address_line3' => $this->buildElement('string', 0, ['max'=>50]),
             'city' => $this->buildElement('string', 1, ['max'=>50]),
-            'country' => $this->buildElement('string', 1, ['max'=>10]), // TODO ISO 3166-1 alpha-2 country code.
+            'country' => $this->buildElement('string', 1, ['max'=>10]),
             'postal_code' => $this->buildElement('string', 1, ['max'=>16]),
-            'state' => $this->buildElement('string', 0, ['max'=>14]), // TODO  country subdivision code defined in ISO 3166-2
+            'state' => $this->buildElement('string', 0, ['max'=>14]),
         ]);
     }
 
@@ -147,8 +147,12 @@ class Create implements MethodInterface
         ]); 
     }
 
-    private function buildElement($typeValue, $isRequired=0, $length=0, $args=0)
-    {
+    private function buildElement(
+        string $typeValue, 
+        bool $isRequired = false,
+        array $length = [],
+        array $args = []
+    ) {
         $inside_array = [
             new Assert\Type(['type', $typeValue]),
         ];

@@ -66,3 +66,6 @@ $payment = $client->call($method);
 
 ## Development Status
 All the API __v1__ methods are implemented.
+
+### Tests
+for windows `php vendor/phpunit/phpunit/phpunit`

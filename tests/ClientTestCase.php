@@ -14,10 +14,6 @@ class ClientTestCase extends TestCase
     {
         $log = Client::LOG_NONE;
 
-        // Use monolog logger to log requests into the file
-        // $log = new Logger('requests');
-        // $log->pushHandler(new StreamHandler(__DIR__ . '/info.log', Logger::INFO));
-
         $this->client = Client::create($this->getConfig(), $log);
 
         $this->assertInstanceOf('Cardinity\Client', $this->client);
@@ -43,7 +39,7 @@ class ClientTestCase extends TestCase
             'payment_method' => Payment\Create::CARD,
             'payment_instrument' => [
                 'pan' => '4111111111111111',
-                'exp_year' => 2024,
+                'exp_year' => date('Y') + 4,
                 'exp_month' => 12,
                 'cvc' => '456',
                 'holder' => 'Mike Dough'
@@ -63,7 +59,7 @@ class ClientTestCase extends TestCase
     }
 
     
-    public function getBrowserInfo()
+    public function getBrowserInfo($args = [])
     {
         $browserInfo = new Payment\BrowserInfo();
         $browserInfo->setAcceptHeader('HTTP accept header.');
@@ -72,18 +68,36 @@ class ClientTestCase extends TestCase
         $browserInfo->setScreenHeight(400);
         $browserInfo->setChallengeWindowSize("600x400");
         $browserInfo->setUserAgent("agent James Bond");
-        $browserInfo->setColorDepth(123);
+        $browserInfo->setColorDepth(24);
         $browserInfo->setTimeZone(-60);
+        if($args && isset($args['ip_address'])) {
+            $browserInfo->setIpAddress($args['ip_address']);
+        }
+        if($args && isset($args['javascript_enabled'])) {
+            $browserInfo->setIpAddress($args['javascript_enabled']);
+        }
+        if($args && isset($args['java_enabled'])) {
+            $browserInfo->setIpAddress($args['java_enabled']);
+        }
         return $browserInfo;
     }
 
-    public function getAddress()
+    public function getAddress($args = [])
     {
         $address = new Payment\Address();
         $address->setAddressLine1('adress 1');
         $address->setCity('city');
         $address->setCountry('LT');
         $address->setPostalCode('02245');
+        if($args && isset($args['address_line2'])) {
+            $address->setAddressLine2($args['address_line2']);
+        }
+        if($args && isset($args['address_line3'])) {
+            $address->setAddressLine3($args['address_line3']);
+        }
+        if($args && isset($args['state'])) {
+            $address->setState($args['state']);
+        }
         return $address;
     }
 
@@ -103,8 +117,8 @@ class ClientTestCase extends TestCase
         $card = new Payment\PaymentInstrumentCard();
         $card->setCardBrand('Visa');
         $card->setPan('4447');
-        $card->setExpYear(2023);
-        $card->setExpMonth(5);
+        $card->setExpYear(date('Y') + 4);
+        $card->setExpMonth(11);
         $card->setHolder('James Bond');
         return $card;
     }

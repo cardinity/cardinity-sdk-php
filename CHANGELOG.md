@@ -3,7 +3,14 @@
 ## v2.2.0
 
 ### Added
-- Allow symfony/validator v5.x
+- Added `Method\Payment\ThreeDS2Data` class
+- Added `Method\Payment\Address` class
+- Added `Method\Payment\BrowserInfo` class
+- Added `Method\Payment\TreeDS2AthorizationInformation` class
+
+### Changed
+- Updated `symfony/validator` to version v5.x
+- Updated `phpspec/phpspec` to versin 5.1.2
 
 ## v2.1.0
 

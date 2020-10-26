@@ -2,15 +2,13 @@
 
 namespace Cardinity\Method\Payment;
 
-// only for serialization (testing?)
-// use Cardinity\Method\ResultObject;
 
 use Cardinity\Method\Payment\BrowserInfoInterface;
 use Cardinity\Method\Payment\Address;
 use Cardinity\Method\Payment\CardHolderInfo;
 
 
-class ThreeDS2Data //extends ResultObject
+class ThreeDS2Data
 {
     /** @type string */
     private $notificationUrl;

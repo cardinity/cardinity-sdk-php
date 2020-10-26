@@ -441,7 +441,7 @@ class Payment extends ResultObject
     /**
      * @return BOOL is it 3D secure v2?
      */
-    public function isTreedsV2() : bool
+    public function isThreedsV2() : bool
     {
         return $this->threeDS2AuthorizationInformation != null;
     }

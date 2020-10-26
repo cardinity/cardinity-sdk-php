@@ -2,10 +2,8 @@
 
 namespace Cardinity\Method\Payment;
 
-// use Cardinity\Method\ResultObject;
 
-
-class BrowserInfo //extends ResultObject
+class BrowserInfo
 {
     /** @type STRING */
     private $acceptHeader;
