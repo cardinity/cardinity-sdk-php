@@ -58,7 +58,7 @@ class Create implements MethodInterface
             'payment_instrument' => $this->getPaymentInstrumentConstraints(
                 $this->getAttributes()['payment_method']
             ),
-            'threeds2_data' => new Assert\Optional([$this->getTrheeDS2DataConstraints()])
+            'threeds2_data' => new Assert\Optional([$this->getThreeDS2DataConstraints()])
         ]);
     }
 
@@ -151,7 +151,7 @@ class Create implements MethodInterface
         string $typeValue, 
         bool $isRequired = false,
         array $length = [],
-        array $args = []
+        $args = false
     ) {
         $inside_array = [
             new Assert\Type(['type', $typeValue]),
