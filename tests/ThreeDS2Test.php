@@ -34,23 +34,6 @@ class ThreeDS2Test extends ClientTestCase
         ];
     }
 
-    // public function testAddressObjectParams()
-    // {
-    //     $address = $this->getAddress();
-    //     $testAddr = $this->addressProvider();
-    //     foreach ($address as $k => $v) $this->assertEquals($v, $testAddr[$k]);
-    // }
-
-    /**
-     * @dataProvider optionalAddressProvider
-     */
-    // public function testAddressObjectOptionalParams($args)
-    // {
-    //     $address = $this->getAddress($args);
-    //     $testAddr = $this->addressProvider($args);
-    //     foreach ($address as $k => $v) $this->assertEquals($v, $testAddr[$k]);
-    // }
-
 
     public function optionalAddressProvider()
     {
@@ -125,11 +108,14 @@ class ThreeDS2Test extends ClientTestCase
             $payment = $exception->getResult();
             $status = $payment->getStatus(); // value will be 'declined'
             $errors = $exception->getErrors(); // list of errors occurred
+        } catch (Cardinity\Exception\InvalidAttributeValue $exception) {
+            /** @type Cardinity\Method\Payment\Payment */
+            // $payment = $exception->getResult();
+            // $status = $payment->getStatus(); // value will be 'declined'
+            $errors = $exception->getErrors(); // list of errors occurred
         }
-        finally { echo'this is finally'; }
+        // finally { echo'this is finally'; }
         if (isset($errors)) {
-            echo"<br>There are errors:<br><pre>";
-            print_r($errors);
             $this->assertContains('[threeds2_data][notification_url]',$errors);
         }
     }
