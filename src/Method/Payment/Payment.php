@@ -82,9 +82,6 @@ class Payment extends ResultObject
         Value assigned by Cardinity. */
     private $authorizationInformation;
 
-    /** @type ThreeDS2Data */
-    private $threeDS2Data;
-
     /** @type ThreeDS2AuthorizationInformation */
     private $threeDS2AuthorizationInformation;
 
@@ -394,23 +391,6 @@ class Payment extends ResultObject
         $this->authorizationInformation = $authorizationInformation;
     }
 
-
-    /**
-     * @return ThreeDS2Data
-     */
-    public function getThreeDS2Data()
-    {
-        return $this->threeDS2Data;
-    }
-
-    /**
-     * @param ThreeDS2Data
-     * @return VOID
-     */
-    public function setThreeDS2Data(ThreeDS2Data $threeDS2Data)
-    {
-        $this->threeDS2Data = $threeDS2Data;
-    }
 
     /**
      * @return ThreeDS2AuthorizationInformation

@@ -4,6 +4,7 @@ namespace Cardinity\Tests;
 
 use Cardinity\Client;
 use Cardinity\Method\Payment;
+use Cardinity\Exception\InvalidAttributeValue;
 
 class ErrorTest extends ClientTestCase
 {

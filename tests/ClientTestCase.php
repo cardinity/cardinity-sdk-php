@@ -61,53 +61,54 @@ class ClientTestCase extends TestCase
     
     public function getBrowserInfo($args = [])
     {
-        $browserInfo = new Payment\BrowserInfo();
-        $browserInfo->setAcceptHeader('HTTP accept header.');
-        $browserInfo->setBrowserLanguage('cardholder language IETF BCP 47.');
-        $browserInfo->setScreenWidth(600);
-        $browserInfo->setScreenHeight(400);
-        $browserInfo->setChallengeWindowSize("600x400");
-        $browserInfo->setUserAgent("agent James Bond");
-        $browserInfo->setColorDepth(24);
-        $browserInfo->setTimeZone(-60);
+        $browserInfo = [
+            'accept_header' => 'Some header',
+            'browser_language' => 'LT',
+            'screen_width' => 390,
+            'screen_height' => 400,
+            'challenge_window_size' => '390x400',
+            'user_agent' => 'super user agent',
+            'color_depth' => 24,
+            'time_zone' => -60,
+        ];
         if($args && isset($args['ip_address'])) {
-            $browserInfo->setIpAddress($args['ip_address']);
+            $browserInfo['ip_address'] = $args['ip_address'];
         }
         if($args && isset($args['javascript_enabled'])) {
-            $browserInfo->setIpAddress($args['javascript_enabled']);
+            $browserInfo['javascript_enabled'] = $args['javascript_enabled'];
         }
         if($args && isset($args['java_enabled'])) {
-            $browserInfo->setIpAddress($args['java_enabled']);
+            $browserInfo['java_enabled'] = $args['java_enabled'];
         }
         return $browserInfo;
     }
 
     public function getAddress($args = [])
     {
-        $address = new Payment\Address();
-        $address->setAddressLine1('adress 1');
-        $address->setCity('city');
-        $address->setCountry('LT');
-        $address->setPostalCode('02245');
+        $address = [
+            'address_line1' => 'first address line',
+            'city' => 'balbieriskis',
+            'country' => 'LT',
+            'postal_code' => '0234'
+        ];
         if($args && isset($args['address_line2'])) {
-            $address->setAddressLine2($args['address_line2']);
+            $address['address_line2'] = $args['address_line2'];
         }
         if($args && isset($args['address_line3'])) {
-            $address->setAddressLine3($args['address_line3']);
+            $address['address_line3'] = $args['address_line3'];
         }
         if($args && isset($args['state'])) {
-            $address->setState($args['state']);
+            $address['state'] = $args['state'];
         }
         return $address;
     }
 
     public function getThreeDS2DataMandatoryData()
     {
-        $treeDS2Data = new Payment\ThreeDS2Data();
-        $treeDS2Data->setNotificationUrl('https://notification.url/');
+        $treeDS2Data['notification_url'] = 'https://notification.url/';
 
         $browserInfo = $this->getBrowserInfo();
-        $treeDS2Data->setBrowserInfo($browserInfo);
+        $treeDS2Data['browser_info'] = $browserInfo;
 
         return $treeDS2Data;
     }

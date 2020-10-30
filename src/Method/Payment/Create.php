@@ -5,12 +5,14 @@ namespace Cardinity\Method\Payment;
 use Cardinity\Method\MethodInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
 class Create implements MethodInterface
 {
     const CARD = 'card';
     const RECURRING = 'recurring';
 
     private $attributes;
+
 
     public function __construct(array $attributes)
     {
@@ -47,7 +49,10 @@ class Create implements MethodInterface
             'description' => $this->buildElement('string', 0, ['max' => 255]),
             'country' => $this->buildElement('string', 1, ['min' => 2,'max' => 2]),
             'payment_method' => new Assert\Required([
-                new Assert\Type(['type' => 'string']),
+                new Assert\Type([
+                    'type' => 'string',
+                    'message' => 'The value {{ value }} is not a valid {{ type }}.'
+                ]),
                 new Assert\Choice([
                     'choices' => [
                         self::CARD,
@@ -58,7 +63,9 @@ class Create implements MethodInterface
             'payment_instrument' => $this->getPaymentInstrumentConstraints(
                 $this->getAttributes()['payment_method']
             ),
-            'threeds2_data' => new Assert\Optional([$this->getThreeDS2DataConstraints()])
+            'threeds2_data' => new Assert\Optional(
+                $this->getThreeDS2DataConstraints()
+            )
         ]);
     }
 
@@ -99,9 +106,15 @@ class Create implements MethodInterface
         return new Assert\Collection([
             'notification_url' => $this->buildElement('string', 1),
             'browser_info' => $this->getBrowserInfoConstraints(),
-            'billing_address' => $this->getAdressConstraints('billingAddress'),
-            'delivery_address' => $this->getAdressConstraints('deliveryAddress'),
-            'cardholder_info' => $this->getCardHolderInfoConstraints(),
+            'billing_address' => new Assert\Optional(
+                $this->getAdressConstraints()
+            ),
+            'delivery_address' => new Assert\Optional(
+                $this->getAdressConstraints()
+            ),
+            'cardholder_info' => new Assert\Optional(
+                $this->getCardHolderInfoConstraints()
+            ),
         ]);
     }
 
@@ -116,9 +129,9 @@ class Create implements MethodInterface
             'user_agent' => $this->buildElement('string', 1),
             'color_depth' => $this->buildElement('integer', 1),
             'time_zone' => $this->buildElement('integer', 1),
-            'ip_address' => $this->buildElement('string'),
-            'javascript_enabled' => $this->buildElement('bool'),
-            'java_enabled' => $this->buildElement('bool'),
+            'ip_address' => new Assert\Optional($this->buildElement('string')),
+            'javascript_enabled' => new Assert\Optional($this->buildElement('bool')),
+            'java_enabled' => new Assert\Optional($this->buildElement('bool')),
         ]);
     }
 
@@ -126,35 +139,40 @@ class Create implements MethodInterface
     {
         return new Assert\Collection([
             'address_line1' => $this->buildElement('string', 1, ['max'=>50]),
-            'address_line2' => $this->buildElement('string', 1, ['max'=>50]),
-            'address_line3' => $this->buildElement('string', 0, ['max'=>50]),
+            'address_line2' => new Assert\Optional(
+                $this->buildElement('string', 1, ['max'=>50])
+            ),
+            'address_line3' => new Assert\Optional(
+                $this->buildElement('string', 0, ['max'=>50])
+            ),
             'city' => $this->buildElement('string', 1, ['max'=>50]),
             'country' => $this->buildElement('string', 1, ['max'=>10]),
             'postal_code' => $this->buildElement('string', 1, ['max'=>16]),
-            'state' => $this->buildElement('string', 0, ['max'=>14]),
+            'state' => new Assert\Optional(
+                $this->buildElement('string', 0, ['max'=>14])
+            ),
         ]);
     }
 
     private function getCardHolderInfoConstraints()
     {
         return new Assert\Collection([
-            'email_address' => new Assert\Optional([
+            'email_address' => new Assert\Optional(
                 new Assert\Email(['mode'=>'loose'])
-            ]),
-            'mobile_phone_number' => $this->buildElement('string'),
-            'work_phone_number' => $this->buildElement('string'),
-            'home_phone_number' => $this->buildElement('string'),
+            ),
+            'mobile_phone_number' => new Assert\Optional($this->buildElement('string')),
+            'work_phone_number' => new Assert\Optional($this->buildElement('string')),
+            'home_phone_number' => new Assert\Optional($this->buildElement('string')),
         ]); 
     }
 
-    private function buildElement(
-        string $typeValue, 
-        bool $isRequired = false,
-        array $length = [],
-        $args = false
-    ) {
+    private function buildElement($typeValue, bool $isRequired=false, $length=0, $args=0)
+    {
         $inside_array = [
-            new Assert\Type(['type', $typeValue]),
+            new Assert\Type([
+                'type' => $typeValue,
+                'message' => 'The value {{ value }} is not a valid {{ type }}.'
+            ]),
         ];
         if ($isRequired) array_unshift($inside_array, new Assert\NotBlank());
         if ($length) array_push($inside_array, new Assert\Length($length));

@@ -6,6 +6,7 @@ use Cardinity\Exception;
 use Cardinity\Method\Payment\AuthorizationInformation;
 use Cardinity\Method\Payment\PaymentInstrumentCard;
 use Cardinity\Method\Payment\PaymentInstrumentRecurring;
+use Cardinity\Method\Payment\ThreeDS2AuthorizationInformation;
 
 class ResultObjectMapper implements ResultObjectMapperInterface
 {
@@ -47,6 +48,9 @@ class ResultObjectMapper implements ResultObjectMapperInterface
                 $value = $this->transformPaymentInstrumentValue($value, $response['payment_method']);
             } elseif ($field == 'authorization_information') {
                 $value = $this->transformAuthorizationInformationValue($value);
+            } elseif ($field == 'threeds2_data') {
+                $result->setThreeDS2AuthorizationInformation($this->transformThreeDS2DataValue($value));
+                continue;
             }
 
             $result->$method($value);
@@ -103,5 +107,16 @@ class ResultObjectMapper implements ResultObjectMapperInterface
         $this->map($data, $info);
 
         return $info;
+    }
+
+    /**
+     * @param ARRAY $data
+     * @return ThreeDS2AuthorizationInformation
+     */
+    private function transformThreeDS2DataValue($data)
+    {
+        $threeds2 = new ThreeDS2AuthorizationInformation();
+        $this->map($data, $threeds2);
+        return $threeds2;
     }
 }

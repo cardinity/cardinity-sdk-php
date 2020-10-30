@@ -9,11 +9,13 @@ class Finalize implements MethodInterface
 {
     private $paymentId;
     private $authorizeData;
+    private $finalizeKey;
 
-    public function __construct($paymentId, $authorizeData)
+    public function __construct($paymentId, $authorizeData, $isV2=false)
     {
         $this->paymentId = $paymentId;
         $this->authorizeData = $authorizeData;
+        $this->finalizeKey = $isV2 ? 'cres' : 'authorize_data';
     }
 
     public function getPaymentId()
@@ -44,14 +46,14 @@ class Finalize implements MethodInterface
     public function getAttributes()
     {
         return [
-            'authorize_data' => $this->getAuthorizeData()
+            $this->finalizeKey => $this->getAuthorizeData()
         ];
     }
 
     public function getValidationConstraints()
     {
         return new Assert\Collection([
-            'authorize_data' => new Assert\Required([
+            $this->finalizeKey => new Assert\Required([
                 new Assert\NotBlank(),
                 new Assert\Type(['type' => 'string']),
             ])

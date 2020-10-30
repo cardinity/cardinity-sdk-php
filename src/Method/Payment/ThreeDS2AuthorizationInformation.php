@@ -2,7 +2,10 @@
 
 namespace Cardinity\Method\Payment;
 
-class ThreeDS2AuthorizationInformation
+use Cardinity\Method\ResultObject;
+
+
+class ThreeDS2AuthorizationInformation extends ResultObject
 {
     /** @var STRING */
     private $acsUrl;
@@ -46,5 +49,10 @@ class ThreeDS2AuthorizationInformation
     public function setCReq(string $cReq) : void
     {
         $this->cReq = $cReq;
+    }
+    
+    public function getErrors()
+    {
+        
     }
 }
