@@ -49,8 +49,7 @@ class ResultObjectMapper implements ResultObjectMapperInterface
             } elseif ($field == 'authorization_information') {
                 $value = $this->transformAuthorizationInformationValue($value);
             } elseif ($field == 'threeds2_data') {
-                $result->setThreeDS2AuthorizationInformation($this->transformThreeDS2DataValue($value));
-                continue;
+                $value = $this->transformThreeDS2DataValue($value);
             }
 
             $result->$method($value);
