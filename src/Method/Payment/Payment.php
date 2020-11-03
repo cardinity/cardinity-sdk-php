@@ -395,20 +395,21 @@ class Payment extends ResultObject
     }
 
     /**
-     * @return ARRAY
+     * @return ThreeDS2AuthorizationInformation
      */
-    public function getThreeDS2Data()
+    public function getThreeds2data()
     {
-        return $this->threeDS2Data;
+        return $this->threeDS2AuthorizationInformation;
     }
 
     /**
-     * @param ARRAY
+     * @param ThreeDS2AuthorizationInformation
      * @return VOID
      */
-    public function setThreeDS2Data(array $threeDS2Data)
-    {
-        $this->threeDS2Data = $threeDS2Data;
+    public function setThreeds2data(
+        ThreeDS2AuthorizationInformation $threeDS2AuthorizationInformation
+    ){
+        $this->threeDS2AuthorizationInformation = $threeDS2AuthorizationInformation;
     }
 
     /**
