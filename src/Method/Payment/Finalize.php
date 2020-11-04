@@ -11,6 +11,11 @@ class Finalize implements MethodInterface
     private $authorizeData;
     private $finalizeKey;
 
+    /**
+     * @param STRING payment ID of the Cardinity system
+     * @param STRING authorize data 'cres' or 'authorize_data'
+     * @param BOOL should it be 3D secure v2 ?
+     */
     public function __construct(string $paymentId, string $authorizeData, $isV2=false)
     {
         $this->paymentId = $paymentId;
