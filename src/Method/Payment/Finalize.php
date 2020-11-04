@@ -11,7 +11,7 @@ class Finalize implements MethodInterface
     private $authorizeData;
     private $finalizeKey;
 
-    public function __construct($paymentId, $authorizeData, $isV2=false)
+    public function __construct(string $paymentId, string $authorizeData, $isV2=false)
     {
         $this->paymentId = $paymentId;
         $this->authorizeData = $authorizeData;
@@ -46,17 +46,28 @@ class Finalize implements MethodInterface
     public function getAttributes()
     {
         return [
-            $this->finalizeKey => $this->getAuthorizeData()
+            $this->finalizeKey => $this->getAuthorizeData(),
+            $this->paymentId => $this->getPaymentId(),
         ];
     }
 
     public function getValidationConstraints()
     {
+        $type_params = [
+            'type' => 'string',
+            'message' => 'The value {{ value }} is not a valid {{ type }}.'
+        ];
         return new Assert\Collection([
-            $this->finalizeKey => new Assert\Required([
-                new Assert\NotBlank(),
-                new Assert\Type(['type' => 'string']),
-            ])
+            'fields' => [
+                $this->finalizeKey => new Assert\Required([
+                    new Assert\NotBlank(["message"=>"$this->finalizeKey missing."]),
+                    new Assert\Type($type_params)
+                ]),
+                $this->paymentId => new Assert\Required([
+                    new Assert\NotBlank(["message"=>"paymentId missing."]),
+                    new Assert\Type($type_params)
+                ]),
+            ],
         ]);
     }
 }
