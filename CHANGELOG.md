@@ -1,6 +1,6 @@
 # Cardinity Client PHP Library
 
-## v2.2.0
+## v3.0.0
 
 ### Added
 - Added `Method\Payment\ThreeDS2Data` class
@@ -9,8 +9,11 @@
 - Added `Method\Payment\TreeDS2AthorizationInformation` class
 
 ### Changed
-- Updated `symfony/validator` to version v5.x
-- Updated `phpspec/phpspec` to versin 5.1.2
+- Updated `php` to version 7.2.x
+- Updated `symfony/validator` to versin 5.x
+- Updated `phpspec/phpspec` to version 6.2
+- Updated `phpunit/phpunit` to version 8.5
+- Updated `symfony/yaml` to version 4.4
 
 ## v2.1.0
 
