@@ -1,6 +1,6 @@
 # Cardinity Client PHP Library
 
-## v2.2.0
+## v3.0.0
 
 ### Added
 - Added `threeDS2AuthorizationInformation` property to `Payment` class
@@ -19,14 +19,17 @@
 - Added `Method\Payment\TreeDS2AthorizationInformation` class
 
 ### Changed
+- Updated `php` to version 7.2.x
+- Updated `symfony/validator` to versin 5.x
+- Updated `phpspec/phpspec` to version 6.2
+- Updated `phpunit/phpunit` to version 8.5
+- Updated `symfony/yaml` to version 4.4
 - Refactored `Create` class to build validation parameters using `buildElement` method
 - Updated `getValidationConstraints` method of `Create` class
 - Updated `getPaymentInstrumentConstraints` method of `Create` class
 - Updated `__construct` method of `Finalize` class
 - Updated `getAttributes` method of `Finalize` class
 - Updated `getValidationConstraints` method of `Finalize` class
-- Updated library `symfony/validator` to version v5.x
-- Updated library `phpspec/phpspec` to versin 5.1.2
 
 ## v2.1.0
 
