@@ -81,9 +81,6 @@ class Payment extends ResultObject
         payment authorization is needed (i.e. payment status is pending).
         Value assigned by Cardinity. */
     private $authorizationInformation;
-
-    /** @type array of 3D secure data for payment object */
-    private $threeDS2Data;
     
     /** @type ThreeDS2AuthorizationInformation */
     private $threeDS2AuthorizationInformation;
@@ -407,24 +404,6 @@ class Payment extends ResultObject
      * @return VOID
      */
     public function setThreeds2data(
-        ThreeDS2AuthorizationInformation $threeDS2AuthorizationInformation
-    ){
-        $this->threeDS2AuthorizationInformation = $threeDS2AuthorizationInformation;
-    }
-
-    /**
-     * @return ThreeDS2AuthorizationInformation
-     */
-    public function getThreeDS2AuthorizationInformation()
-    {
-        return $this->threeDS2AuthorizationInformation;
-    }
-
-    /**
-     * @param ThreeDS2AuthorizationInformation
-     * @return VOID
-     */
-    public function setThreeDS2AuthorizationInformation(
         ThreeDS2AuthorizationInformation $threeDS2AuthorizationInformation
     ){
         $this->threeDS2AuthorizationInformation = $threeDS2AuthorizationInformation;

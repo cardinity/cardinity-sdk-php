@@ -3,14 +3,30 @@
 ## v2.2.0
 
 ### Added
-- Added `Method\Payment\ThreeDS2Data` class
-- Added `Method\Payment\Address` class
-- Added `Method\Payment\BrowserInfo` class
+- Added `threeDS2AuthorizationInformation` property to `Payment` class
+- Added `getThreeds2data` method to `Payment` class
+- Added `setThreeds2data` method to `Payment` class
+- Added `isThreedsV1` method to `Payment` class
+- Added `isThreedsV2` method to `Payment` class
+- Added `getThreeDS2DataConstraints` method to `Create` class
+- Added `getBrowserInfoConstraints` method to `Create` class
+- Added `getAdressConstraints` method to `Create` class
+- Added `getCardHolderInfoConstraints` method to `Create` class
+- Added `buildElement` method to `Create` class
+- Added `paymentId` property to `Finalize` class
+- Added `finalizeKey` property to `Finalize` class
+- Added `Method\Payment\ThreeDS2Data` parameters
 - Added `Method\Payment\TreeDS2AthorizationInformation` class
 
 ### Changed
-- Updated `symfony/validator` to version v5.x
-- Updated `phpspec/phpspec` to versin 5.1.2
+- Refactored `Create` class to build validation parameters using `buildElement` method
+- Updated `getValidationConstraints` method of `Create` class
+- Updated `getPaymentInstrumentConstraints` method of `Create` class
+- Updated `__construct` method of `Finalize` class
+- Updated `getAttributes` method of `Finalize` class
+- Updated `getValidationConstraints` method of `Finalize` class
+- Updated library `symfony/validator` to version v5.x
+- Updated library `phpspec/phpspec` to versin 5.1.2
 
 ## v2.1.0
 
