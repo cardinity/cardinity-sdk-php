@@ -95,7 +95,7 @@ try {
     } elseif ($status == 'pending') {
         if ($payment->isThreedsV2()) {
             // $auth object for data required to finalize payment
-            $auth = $payment->getThreeDS2AuthorizationInformation();
+            $auth = $payment->getThreeds2data();
             // finalize process should be done here.
         }
     }
