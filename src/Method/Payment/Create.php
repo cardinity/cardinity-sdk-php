@@ -81,7 +81,7 @@ class Create implements MethodInterface
                     'exp_year' => $this->buildElement(
                         'integer', 1, 
                         ['min' => 4,'max' => 4],
-                        new Assert\Range(['min' => date('Y')]),
+                        new Assert\Range(['min' => date('Y')])
                     ),
                     'exp_month' => $this->buildElement('integer', 1),
                     'cvc' => $this->buildElement('string', 1, ['min' => 3, 'max' => 4]),
