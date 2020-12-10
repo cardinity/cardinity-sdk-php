@@ -394,7 +394,7 @@ class Payment extends ResultObject
     /**
      * @return ThreeDS2AuthorizationInformation
      */
-    public function getThreeds2data()
+    public function getThreeds2Data()
     {
         return $this->threeDS2AuthorizationInformation;
     }
@@ -403,7 +403,7 @@ class Payment extends ResultObject
      * @param ThreeDS2AuthorizationInformation
      * @return VOID
      */
-    public function setThreeds2data(
+    public function setThreeds2Data(
         ThreeDS2AuthorizationInformation $threeDS2AuthorizationInformation
     ){
         $this->threeDS2AuthorizationInformation = $threeDS2AuthorizationInformation;

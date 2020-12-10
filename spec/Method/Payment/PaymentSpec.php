@@ -65,16 +65,16 @@ class PaymentSpec extends ObjectBehavior
 
 
     function it_is_able_to_take_threeds2_data()
-    {        
+    {
 
         $tds2Auth = new ThreeDS2AuthorizationInformation();
         $tds2Auth->setAcsUrl('https://acs.cardinity.com/v2/');
         $tds2Auth->setCreq('eyJyZXR1c...');
-        
-        $this->setThreeDS2AuthorizationInformation($tds2Auth);        
-        $this->getThreeDS2AuthorizationInformation()->shouldReturnAnInstanceOf('Cardinity\Method\Payment\ThreeDS2AuthorizationInformation');
-        $this->getThreeDS2AuthorizationInformation()->shouldReturn($tds2Auth);
-        
+
+        $this->setThreeds2Data($tds2Auth);
+        $this->getThreeds2Data()->shouldReturnAnInstanceOf('Cardinity\Method\Payment\ThreeDS2AuthorizationInformation');
+        $this->getThreeds2Data()->shouldReturn($tds2Auth);
+
     }
 
     function it_is_able_to_serialize_tdsv2(){
@@ -83,14 +83,14 @@ class PaymentSpec extends ObjectBehavior
         $tds2Auth = new ThreeDS2AuthorizationInformation();
         $tds2Auth->setAcsUrl('https://acs.cardinity.com/v2/');
         $tds2Auth->setCreq('eyJyZXR1c...');
-        
-        $this->setThreeDS2AuthorizationInformation($tds2Auth);        
-        $this->getThreeDS2AuthorizationInformation()->shouldReturnAnInstanceOf('Cardinity\Method\Payment\ThreeDS2AuthorizationInformation');
-        $this->getThreeDS2AuthorizationInformation()->shouldReturn($tds2Auth);
-        
-        $this->getThreeDS2AuthorizationInformation()->serialize()->shouldReturn($json);
+
+        $this->setThreeds2Data($tds2Auth);
+        $this->getThreeds2Data()->shouldReturnAnInstanceOf('Cardinity\Method\Payment\ThreeDS2AuthorizationInformation');
+        $this->getThreeds2Data()->shouldReturn($tds2Auth);
+
+        $this->getThreeds2Data()->serialize()->shouldReturn($json);
     }
-    
+
 
     function it_handles_unexpected_values()
     {

@@ -27,8 +27,8 @@ class CreateSpec extends ObjectBehavior
             'country' => 'LT',
             'postal_code' => '0234'
         ];
-        $threeds2data['notification_url'] = 'http://localhost:8000/3dsv2_callback.php';
-        $threeds2data['browser_info'] = $browserInfo;
+        $threeds2Data['notification_url'] = 'http://localhost:8000/3dsv2_callback.php';
+        $threeds2Data['browser_info'] = $browserInfo;
 
         $this->options = [
             'amount' => 12.99,
@@ -45,7 +45,7 @@ class CreateSpec extends ObjectBehavior
                 'cvc' => '456',
                 'holder' => 'Mr Tester',
             ],
-            'threeds2_data' => $threeds2data
+            'threeds2_data' => $threeds2Data
         ];
         $this->beConstructedWith($this->options);
     }
