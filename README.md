@@ -97,6 +97,10 @@ try {
             // $auth object for data required to finalize payment
             $auth = $payment->getThreeds2Data();
             // finalize process should be done here.
+        }else if ($payment->isThreedsV1()) {
+            // $auth object for data required to finalize payment
+            $auth = $payment->getAuthorizationInformation();
+            // finalize process should be done here.
         }
     }
 } catch (Cardinity\Exception\InvalidAttributeValue $exception) {
@@ -132,11 +136,20 @@ $client = Client::create([
     'consumerSecret' => 'YOUR_CONSUMER_SECRET',
 ]);
 
-$method = new Payment\Finalize(
-    $payment->getId(), // payment object received from API call
-    $auth->getCreq(), // payment object received from API call
-    true // BOOL `true` to enable 3D secure V2 parameters
-);
+if($v2){
+    $method = new Payment\Finalize(
+        $payment->getId(), // payment object received from API call
+        $auth->getCreq(), // payment object received from API call
+        true // BOOL `true` to enable 3D secure V2 parameters
+    );
+}elseif($v1){
+    $method = new Payment\Finalize(
+        $payment->getId(), // payment object received from API call
+        $auth->getData(), // payment object received from API call
+        false // BOOL `false` to enable 3D secure V1 parameters
+    );
+}
+
 // again use same try ... catch block
 try {
     $payment = $client->call($method);
