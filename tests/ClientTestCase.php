@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class ClientTestCase extends TestCase
 {
-    public function setUp() : void
+    public function setUp()
     {
         $log = Client::LOG_NONE;
 

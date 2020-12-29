@@ -412,7 +412,7 @@ class Payment extends ResultObject
     /**
      * @return BOOL is it 3D secure v1?
      */
-    public function isThreedsV1() : bool
+    public function isThreedsV1()
     {
         return $this->authorizationInformation != null;
     }
@@ -420,7 +420,7 @@ class Payment extends ResultObject
     /**
      * @return BOOL is it 3D secure v2?
      */
-    public function isThreedsV2() : bool
+    public function isThreedsV2()
     {
         return $this->threeDS2AuthorizationInformation != null;
     }

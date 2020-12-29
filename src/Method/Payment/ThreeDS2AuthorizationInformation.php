@@ -27,7 +27,7 @@ class ThreeDS2AuthorizationInformation extends ResultObject
      * @param STRING
      * @return VOID
      */
-    public function setAcsUrl(string $acsUrl) : void
+    public function setAcsUrl(string $acsUrl)
     {
         $this->acsUrl = $acsUrl;
     }
@@ -46,7 +46,7 @@ class ThreeDS2AuthorizationInformation extends ResultObject
      * @param STRING
      * @return VOID
      */
-    public function setCReq(string $cReq) : void
+    public function setCReq(string $cReq)
     {
         $this->cReq = $cReq;
     }
