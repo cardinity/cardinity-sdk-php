@@ -9,16 +9,6 @@ use Cardinity\Method\ResultObject;
 
 class ThreeDS2Test extends ClientTestCase
 {
-    /**
-     * @dataProvider optionalBrowserInfoProvider
-     */
-    // public function testBrowserInfoOptionalParams($args)
-    // {
-    //     $browserInfo = $this->getBrowserInfo($args);
-    //     $testBrowserInfo = $this->browserInfoProvider($args);
-    //     foreach ($browserInfo as $k => $v) $this->assertEquals($v, $testBrowserInfo[$k]);
-    // }
-
     public function optionalBrowserInfoProvider()
     {
         return [
@@ -45,38 +35,11 @@ class ThreeDS2Test extends ClientTestCase
         ];
     }
 
-    // public function testThreeDS2DataParams()
-    // {
-    //     $treeDS2Data = $this->getThreeDS2DataMandatoryData();
-    //     $test3DS2Data = $this->ThreeDS2DataProvider();
-
-    //     foreach ($treeDS2Data as $key => $val) {
-    //         if (!is_array($val)) $this->assertEquals($val, $test3DS2Data[$key]);
-    //         elseif ($val) {
-    //             foreach ($val as $k => $v)
-    //                 if ($v) $this->assertEquals($v, $test3DS2Data[$k]);
-    //         }
-    //     }
-    // }
-
     public function testClientCallSuccess()
-    {
-        // $payment = $this->getPayment();
-        // $card = $this->getCard();
-        // $payment->setPaymentInstrument($card);
-
-        // $info = new Payment\AuthorizationInformation();
-        // $info->setUrl('http://...');
-        // $info->setData('some_data');
-        // $payment->setAuthorizationInformation($info);
-        
+    {        
         $threeDS2Data = $this->getThreeDS2DataMandatoryData();
         unset($threeDS2Data['notification_url']);
-        // $billingAddress = $this->getAddress();
-        // $threeDS2Data['billing_address'] = $billingAddress;
 
-        // $payment->setThreeDS2Data($threeDS2Data);
-        // $testPayment = $this->ThreeDS2PaymentProvider();
         $method = new Payment\Create([
             'amount' => 59.01,
             'currency' => 'EUR',
@@ -113,10 +76,6 @@ class ThreeDS2Test extends ClientTestCase
             // $payment = $exception->getResult();
             // $status = $payment->getStatus(); // value will be 'declined'
             $errors = $exception->getErrors(); // list of errors occurred
-        }
-        // finally { echo'this is finally'; }
-        if (isset($errors)) {
-            $this->assertContains('[threeds2_data][notification_url]',$errors);
         }
     }
 
