@@ -3,6 +3,7 @@ bin/
 build/
 specs/
 phpunit.xml
+.phpunit.result.cache
 phpspec.yml
 tests/info.log
 composer.lock

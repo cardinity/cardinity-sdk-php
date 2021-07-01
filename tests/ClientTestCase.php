@@ -71,13 +71,13 @@ class ClientTestCase extends TestCase
             'color_depth' => 24,
             'time_zone' => -60,
         ];
-        if($args && isset($args['ip_address'])) {
+        if ($args && isset($args['ip_address'])) {
             $browserInfo['ip_address'] = $args['ip_address'];
         }
-        if($args && isset($args['javascript_enabled'])) {
+        if ($args && isset($args['javascript_enabled'])) {
             $browserInfo['javascript_enabled'] = $args['javascript_enabled'];
         }
-        if($args && isset($args['java_enabled'])) {
+        if ($args && isset($args['java_enabled'])) {
             $browserInfo['java_enabled'] = $args['java_enabled'];
         }
         return $browserInfo;
@@ -91,13 +91,13 @@ class ClientTestCase extends TestCase
             'country' => 'LT',
             'postal_code' => '0234'
         ];
-        if($args && isset($args['address_line2'])) {
+        if ($args && isset($args['address_line2'])) {
             $address['address_line2'] = $args['address_line2'];
         }
-        if($args && isset($args['address_line3'])) {
+        if ($args && isset($args['address_line3'])) {
             $address['address_line3'] = $args['address_line3'];
         }
-        if($args && isset($args['state'])) {
+        if ($args && isset($args['state'])) {
             $address['state'] = $args['state'];
         }
         return $address;
