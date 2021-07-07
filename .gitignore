@@ -8,3 +8,4 @@ phpspec.yml
 tests/info.log
 composer.lock
 .idea/
+phpstan.neon

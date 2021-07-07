@@ -47,6 +47,16 @@ class ClientTestCase extends TestCase
         ];
     }
 
+    public function get3ds2PaymentParams($browserData = [])
+    {
+        return array_merge(
+            $this->getPaymentParams(),
+            [
+                'threeds2_data' => $this->getThreeDS2Data($browserData)
+            ]
+        );
+    }
+
     public function getPayment()
     {
         $payment = new Payment\Payment();
@@ -71,14 +81,10 @@ class ClientTestCase extends TestCase
             'color_depth' => 24,
             'time_zone' => -60,
         ];
-        if ($args && isset($args['ip_address'])) {
-            $browserInfo['ip_address'] = $args['ip_address'];
-        }
-        if ($args && isset($args['javascript_enabled'])) {
-            $browserInfo['javascript_enabled'] = $args['javascript_enabled'];
-        }
-        if ($args && isset($args['java_enabled'])) {
-            $browserInfo['java_enabled'] = $args['java_enabled'];
+        if ($args) {
+            foreach($args as $key => $val) {
+                $browserInfo[$key] = $val;
+            }
         }
         return $browserInfo;
     }
@@ -103,14 +109,12 @@ class ClientTestCase extends TestCase
         return $address;
     }
 
-    public function getThreeDS2DataMandatoryData()
+    public function getThreeDS2Data($browserData = [])
     {
-        $treeDS2Data['notification_url'] = 'https://notification.url/';
-
-        $browserInfo = $this->getBrowserInfo();
-        $treeDS2Data['browser_info'] = $browserInfo;
-
-        return $treeDS2Data;
+        return [
+            'notification_url' => 'https://notification.url/',
+            'browser_info' => $this->getBrowserInfo($browserData),
+        ];
     }
 
     public function getCard()

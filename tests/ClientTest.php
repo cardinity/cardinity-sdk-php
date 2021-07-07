@@ -9,20 +9,24 @@ use Cardinity\Method\Payment\Create;
 
 class ClientTest extends ClientTestCase
 { 
+
+    public function setUp() : void
+    {
+        $this->payment3ds2Params = $this->get3ds2PaymentParams();
+        parent::setUp();
+    }
+
     /**
      * @dataProvider localhostUrlValidationDataProvider
      * @return void
      */
-    public function testLocalhostUrlExeptionRised($address, $expected_message)
+    public function testLocalhostUrlExeptionRised($address, $expectedMessage)
     {
-        $paymentParams = $this->getPaymentParams();
-        $threeds2Data = $this->getThreeDS2DataMandatoryData();
-        $threeds2Data['notification_url'] = $address;
-        $paymentParams['threeds2_data'] = $threeds2Data;
-        $method = new Payment\Create($paymentParams);
+        $this->payment3ds2Params['threeds2_data']['notification_url'] = $address;
+        $method = new Payment\Create($this->payment3ds2Params);
 
         $this->expectException(Exception\InvalidAttributeValue::class);
-        $this->expectErrorMessage($expected_message);
+        $this->expectErrorMessage($expectedMessage);
 
         $payment = $this->client->call($method);
     }
@@ -35,16 +39,16 @@ class ClientTest extends ClientTestCase
         return [
             [
                 'http://localhost',
-                'The url "http://localhost" contains restricted values. Do not use "localhost" or "127.0.0.1".'
+                $this->getRestrictedHostnameErrorMsg('http://localhost'),
             ],[
                 'https://localhost',
-                'The url "https://localhost" contains restricted values. Do not use "localhost" or "127.0.0.1".'
+                $this->getRestrictedHostnameErrorMsg('https://localhost'),
             ],[
                 'http://127.0.0.1',
-                'The url "http://127.0.0.1" contains restricted values. Do not use "localhost" or "127.0.0.1".'
+                $this->getRestrictedHostnameErrorMsg('http://127.0.0.1'),
             ],[
                 'https://127.0.0.1',
-                'The url "https://127.0.0.1" contains restricted values. Do not use "localhost" or "127.0.0.1".'
+                $this->getRestrictedHostnameErrorMsg('https://127.0.0.1'),
             ]
         ];
     }
@@ -54,16 +58,13 @@ class ClientTest extends ClientTestCase
      * @dataProvider protocolUrlValidationDataProvider
      * @return void
      */
-    public function testProtocolUrlExeptionRised($address, $expected_message)
+    public function testProtocolUrlExeptionRised($address, $expectedMessage)
     {
-        $paymentParams = $this->getPaymentParams();
-        $threeds2Data = $this->getThreeDS2DataMandatoryData();
-        $threeds2Data['notification_url'] = $address;
-        $paymentParams['threeds2_data'] = $threeds2Data;
-        $method = new Payment\Create($paymentParams);
+        $this->payment3ds2Params['threeds2_data']['notification_url'] = $address;
+        $method = new Payment\Create($this->payment3ds2Params);
 
         $this->expectException(Exception\InvalidAttributeValue::class);
-        $this->expectErrorMessage($expected_message);
+        $this->expectErrorMessage($expectedMessage);
 
         $payment = $this->client->call($method);
     }
@@ -87,20 +88,18 @@ class ClientTest extends ClientTestCase
         ];
     }
 
+
     /**
      * @dataProvider localhostUrlNotStringDataProvider
      * @return void
      */
-    public function testLocalhostUrlNotStringExeptionRised($address, $expected_message)
+    public function testLocalhostUrlNotStringExeptionRised($address, $expectedMessage)
     {
-        $paymentParams = $this->getPaymentParams();
-        $threeds2Data = $this->getThreeDS2DataMandatoryData();
-        $threeds2Data['notification_url'] = $address;
-        $paymentParams['threeds2_data'] = $threeds2Data;
-        $method = new Payment\Create($paymentParams);
+        $this->payment3ds2Params['threeds2_data']['notification_url'] = $address;
+        $method = new Payment\Create($this->payment3ds2Params);
 
         $this->expectException(Exception\InvalidAttributeValue::class);
-        $this->expectErrorMessage($expected_message);
+        $this->expectErrorMessage($expectedMessage);
 
         $payment = $this->client->call($method);
     }
@@ -121,4 +120,52 @@ class ClientTest extends ClientTestCase
         ];
     }
 
+    /**
+     * @dataProvider browserInfoIpAddressDataProvider
+     * @return void
+     */
+    public function testBrowserInfoIpAddressExeptionRised($address, $expectedMessage)
+    {
+        $paymentParams = $this->get3ds2PaymentParams($address);
+        $method = new Payment\Create($paymentParams);
+
+        $this->expectException(Exception\InvalidAttributeValue::class);
+        $this->expectErrorMessage($expectedMessage);
+
+        $payment = $this->client->call($method);
+    }
+
+    /**
+     * @return array 
+     */
+    public function browserInfoIpAddressDataProvider()
+    {
+        return [
+            [
+                ['ip_address' => 123],
+                'This value should be of type string.'
+            ],[
+                ['ip_address' => ''],
+                'This value should not be blank.'
+            ],[
+                ['ip_address' => 'http://localhost'],
+                $this->getRestrictedHostnameErrorMsg('http://localhost'),
+            ],[
+                ['ip_address' => 'https://localhost'],
+                $this->getRestrictedHostnameErrorMsg('https://localhost'),
+            ],[
+                ['ip_address' => 'http://127.0.0.1'],
+                $this->getRestrictedHostnameErrorMsg('http://127.0.0.1'),
+            ],[
+                ['ip_address' => 'https://127.0.0.1'],
+                $this->getRestrictedHostnameErrorMsg('https://127.0.0.1'),
+            ],
+        ];
+    }
+
+    private function getRestrictedHostnameErrorMsg(string $address): string
+    {
+        return 'The url "' . $address . 
+            '" contains restricted values. Do not use "localhost" or "127.0.0.1".';
+    }
 }

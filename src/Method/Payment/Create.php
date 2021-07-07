@@ -135,6 +135,18 @@ class Create implements MethodInterface
         ]);
     }
 
+    public function getIpAddressConstraints()
+    {
+        return new Assert\Optional([
+            new Assert\NotBlank(),
+            new CallbackUrlConstraint(),
+            new Assert\Type([
+                'type' => 'string',
+                'message' => 'The value {{ value }} is not a valid {{ type }}.'
+            ]),
+        ]);
+    }
+
     private function getBrowserInfoConstraints()
     {
         return new Assert\Collection([
@@ -146,7 +158,7 @@ class Create implements MethodInterface
             'user_agent' => $this->buildElement('string', 1),
             'color_depth' => $this->buildElement('integer', 1),
             'time_zone' => $this->buildElement('integer', 1),
-            'ip_address' => new Assert\Optional($this->buildElement('string')),
+            'ip_address' => $this->getIpAddressConstraints(),
             'javascript_enabled' => new Assert\Optional($this->buildElement('bool')),
             'java_enabled' => new Assert\Optional($this->buildElement('bool')),
         ]);
