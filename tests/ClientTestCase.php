@@ -10,7 +10,10 @@ use PHPUnit\Framework\TestCase;
 
 class ClientTestCase extends TestCase
 {
-    public function setUp() : void
+    /**
+     * @return void
+     */
+    public function setUp(): void
     {
         $log = Client::LOG_NONE;
 
@@ -19,6 +22,9 @@ class ClientTestCase extends TestCase
         $this->assertInstanceOf('Cardinity\Client', $this->client);
     }
 
+    /**
+     * @return array
+     */
     protected function getConfig()
     {
         return [
@@ -27,6 +33,9 @@ class ClientTestCase extends TestCase
         ];
     }
 
+    /**
+     * @return array
+     */
     protected function getPaymentParams()
     {
         return [
@@ -47,6 +56,10 @@ class ClientTestCase extends TestCase
         ];
     }
 
+    /**
+     * @param array optional
+     * @return array
+     */
     public function get3ds2PaymentParams($browserData = [])
     {
         return array_merge(
@@ -57,6 +70,9 @@ class ClientTestCase extends TestCase
         );
     }
 
+    /**
+     * @return Payment\Payment
+     */
     public function getPayment()
     {
         $payment = new Payment\Payment();
@@ -68,7 +84,10 @@ class ClientTestCase extends TestCase
         return $payment;
     }
 
-    
+    /**
+     * @param array optional
+     * @return array
+     */
     public function getBrowserInfo($args = [])
     {
         $browserInfo = [
@@ -89,6 +108,10 @@ class ClientTestCase extends TestCase
         return $browserInfo;
     }
 
+    /**
+     * @param array optional
+     * @return array
+     */
     public function getAddress($args = [])
     {
         $address = [
@@ -109,6 +132,10 @@ class ClientTestCase extends TestCase
         return $address;
     }
 
+    /**
+     * @param array optional
+     * @return array
+     */
     public function getThreeDS2Data($browserData = [])
     {
         return [
@@ -117,6 +144,9 @@ class ClientTestCase extends TestCase
         ];
     }
 
+    /**
+     * @return Payment\PaymentInstrumentCard
+     */
     public function getCard()
     {
         $card = new Payment\PaymentInstrumentCard();

@@ -9,8 +9,10 @@ use Cardinity\Method\Payment\Create;
 
 class ClientTest extends ClientTestCase
 { 
-
-    public function setUp() : void
+    /**
+     * @return void
+     */
+    public function setUp(): void
     {
         $this->payment3ds2Params = $this->get3ds2PaymentParams();
         parent::setUp();
@@ -18,6 +20,8 @@ class ClientTest extends ClientTestCase
 
     /**
      * @dataProvider localhostUrlValidationDataProvider
+     * @param string $address
+     * @param string $expectedMessage
      * @return void
      */
     public function testLocalhostUrlExeptionRised($address, $expectedMessage)
@@ -56,6 +60,8 @@ class ClientTest extends ClientTestCase
 
     /**
      * @dataProvider protocolUrlValidationDataProvider
+     * @param string $address
+     * @param string $expectedMessage
      * @return void
      */
     public function testProtocolUrlExeptionRised($address, $expectedMessage)
@@ -122,6 +128,8 @@ class ClientTest extends ClientTestCase
 
     /**
      * @dataProvider browserInfoIpAddressDataProvider
+     * @param array $address
+     * @param string $expectedMessage
      * @return void
      */
     public function testBrowserInfoIpAddressExeptionRised($address, $expectedMessage)
@@ -163,7 +171,11 @@ class ClientTest extends ClientTestCase
         ];
     }
 
-    private function getRestrictedHostnameErrorMsg(string $address): string
+    /**
+     * @param string $address url or ip
+     * @return string
+     */
+    private function getRestrictedHostnameErrorMsg(string $address)
     {
         return 'The url "' . $address . 
             '" contains restricted values. Do not use "localhost" or "127.0.0.1".';
