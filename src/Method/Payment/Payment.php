@@ -85,6 +85,10 @@ class Payment extends ResultObject
     /** @type ThreeDS2AuthorizationInformation */
     private $threeDS2AuthorizationInformation;
 
+    /** @type string a descriptor to include in statement provided by a merchant. limit will vary based on merchant name
+        Maximum length 25 characters. */
+    private $statementDescriptorDuffix;
+
     /**
      * Gets the value of id.
      * @return mixed
@@ -408,6 +412,26 @@ class Payment extends ResultObject
     ){
         $this->threeDS2AuthorizationInformation = $threeDS2AuthorizationInformation;
     }
+
+     /**
+     * Gets the value of statementDescriptorDuffix.
+     * @return mixed
+     */
+    public function getStatementDescriptorDuffix()
+    {
+        return $this->statementDescriptorDuffix;
+    }
+
+    /**
+     * Sets the value of statementDescriptorDuffix.
+     * @param mixed $statementDescriptorDuffix the description included in statement
+     * @return void
+     */
+    public function setStatementDescriptorDuffix($statementDescriptorDuffix)
+    {
+        $this->statementDescriptorDuffix = $statementDescriptorDuffix;
+    }
+
 
     /**
      * @return BOOL is it 3D secure v1?

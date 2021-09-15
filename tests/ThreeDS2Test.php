@@ -71,7 +71,7 @@ class ThreeDS2Test extends ClientTestCase
         // $payment->setAuthorizationInformation($info);
         
         $threeDS2Data = $this->getThreeDS2DataMandatoryData();
-        unset($threeDS2Data['notification_url']);
+        // unset($threeDS2Data['notification_url']);
         // $billingAddress = $this->getAddress();
         // $threeDS2Data['billing_address'] = $billingAddress;
 

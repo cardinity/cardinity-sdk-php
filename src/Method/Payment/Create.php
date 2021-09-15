@@ -47,6 +47,7 @@ class Create implements MethodInterface
             'settle' => $this->buildElement('bool'),
             'order_id' => $this->buildElement('string', 0, ['min' => 2,'max' => 50]),
             'description' => $this->buildElement('string', 0, ['max' => 255]),
+            'statement_descriptor_suffix' => $this->buildElement('string', 0, ['max' => 255]),
             'country' => $this->buildElement('string', 1, ['min' => 2,'max' => 2]),
             'payment_method' => new Assert\Required([
                 new Assert\Type([
