@@ -67,7 +67,7 @@ class PaymentTest extends ClientTestCase
     {
         $this->paymentParams['amount'] = $amount;
         $method = new Payment\Create($this->paymentParams);
-        
+
         $this->expectException(\Cardinity\Exception\InvalidAttributeValue::class);
         $this->client->call($method);
     }
