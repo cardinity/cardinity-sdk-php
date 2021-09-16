@@ -72,7 +72,7 @@ class Payment extends ResultObject
      */
     private $paymentInstrument;
 
-    /** @deprecated 
+    /** @deprecated
      * @type string Used to provide additional information (PATCH verb) once
         customer completes authorization process. */
     private $authorizeData;
@@ -81,13 +81,13 @@ class Payment extends ResultObject
         payment authorization is needed (i.e. payment status is pending).
         Value assigned by Cardinity. */
     private $authorizationInformation;
-    
+
     /** @type ThreeDS2AuthorizationInformation */
     private $threeDS2AuthorizationInformation;
 
     /** @type string a descriptor to include in statement provided by a merchant. limit will vary based on merchant name
         Maximum length 25 characters. */
-    private $statementDescriptorDuffix;
+    private $statementDescriptorSuffix;
 
     /**
      * Gets the value of id.
@@ -414,22 +414,22 @@ class Payment extends ResultObject
     }
 
      /**
-     * Gets the value of statementDescriptorDuffix.
+     * Gets the value of statementDescriptorSuffix.
      * @return mixed
      */
-    public function getStatementDescriptorDuffix()
+    public function getStatementDescriptorSuffix()
     {
-        return $this->statementDescriptorDuffix;
+        return $this->statementDescriptorSuffix;
     }
 
     /**
-     * Sets the value of statementDescriptorDuffix.
-     * @param mixed $statementDescriptorDuffix the description included in statement
+     * Sets the value of statementDescriptorSuffix.
+     * @param mixed $statementDescriptorSuffix the description included in statement
      * @return void
      */
-    public function setStatementDescriptorDuffix($statementDescriptorDuffix)
+    public function setStatementDescriptorSuffix($statementDescriptorSuffix)
     {
-        $this->statementDescriptorDuffix = $statementDescriptorDuffix;
+        $this->statementDescriptorSuffix = $statementDescriptorSuffix;
     }
 
 

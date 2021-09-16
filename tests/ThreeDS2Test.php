@@ -16,18 +16,6 @@ class ThreeDS2Test extends ClientTestCase
     {
         $threeDS2Data = $this->getThreeDS2Data();
 
-        // $info = new Payment\AuthorizationInformation();
-        // $info->setUrl('http://...');
-        // $info->setData('some_data');
-        // $payment->setAuthorizationInformation($info);
-        
-        $threeDS2Data = $this->getThreeDS2DataMandatoryData();
-        unset($threeDS2Data['notification_url']);
-        // $billingAddress = $this->getAddress();
-        // $threeDS2Data['billing_address'] = $billingAddress;
-
-        // $payment->setThreeDS2Data($threeDS2Data);
-        // $testPayment = $this->ThreeDS2PaymentProvider();
         $method = new Payment\Create([
             'amount' => 59.01,
             'currency' => 'EUR',
