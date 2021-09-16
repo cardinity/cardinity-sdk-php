@@ -48,7 +48,7 @@ class Create implements MethodInterface
             'settle' => $this->buildElement('bool'),
             'order_id' => $this->buildElement('string', 0, ['min' => 2,'max' => 50]),
             'description' => $this->buildElement('string', 0, ['max' => 255]),
-            'statement_descriptor_suffix' => $this->buildElement('string', 0, ['max' => 255]),
+            'statement_descriptor_suffix' => $this->buildElement('string', 0, ['max' => 25]),
             'country' => $this->buildElement('string', 1, ['min' => 2,'max' => 2]),
             'payment_method' => new Assert\Required([
                 new Assert\Type([
@@ -81,7 +81,7 @@ class Create implements MethodInterface
                         new Assert\Luhn()
                     ]),
                     'exp_year' => $this->buildElement(
-                        'integer', 1, 
+                        'integer', 1,
                         ['min' => 4,'max' => 4],
                         new Assert\Range(['min' => date('Y')])
                     ),
@@ -193,13 +193,13 @@ class Create implements MethodInterface
             'mobile_phone_number' => new Assert\Optional($this->buildElement('string')),
             'work_phone_number' => new Assert\Optional($this->buildElement('string')),
             'home_phone_number' => new Assert\Optional($this->buildElement('string')),
-        ]); 
+        ]);
     }
 
     private function buildElement(
-        string $typeValue, 
-        bool $isRequired = false, 
-        array $length = null, 
+        string $typeValue,
+        bool $isRequired = false,
+        array $length = null,
         $args = null // TODO can it be null?
     ): object
     {
@@ -207,8 +207,8 @@ class Create implements MethodInterface
         if ($isRequired) array_unshift($inside_array, new Assert\NotBlank());
         if ($length) array_push($inside_array, new Assert\Length($length));
         if ($args) array_push($inside_array, $args);
-        
-        return $isRequired 
+
+        return $isRequired
             ? new Assert\Required($inside_array)
             : new Assert\Optional($inside_array)
         ;
