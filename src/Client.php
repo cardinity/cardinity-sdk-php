@@ -63,16 +63,7 @@ class Client
         $validator = Validation::createValidator();
 
         if(isset($options['apiEndpoint'])){
-            $violations = $validator->validate($options['apiEndpoint'], [
-                new Url(),
-            ]);
-            if(count($violations) != 0){
-                throw new Exception\InvalidAttributeValue(
-                    'Your API endpoint is not a valid URL',
-                    $violations
-                );
-            }
-            Client::$url = $options['apiEndpoint'];
+            Client::validateClientEndpoint($options, $validator);
         }
 
         $stack = HandlerStack::create();
@@ -200,5 +191,25 @@ class Client
         }
 
         return $data;
+    }
+
+    /**
+     * Validate endPoint is a valid URL
+     *
+     * @param [array] $options
+     * @param [Validator] $validator
+     * @return void
+     */
+    private static function validateClientEndpoint($options, $validator){
+        $violations = $validator->validate($options['apiEndpoint'], [
+            new Url(),
+        ]);
+        if(count($violations) != 0){
+            throw new Exception\InvalidAttributeValue(
+                'Your API endpoint is not a valid URL',
+                $violations
+            );
+        }
+        Client::$url = $options['apiEndpoint'];
     }
 }
