@@ -46,14 +46,10 @@ class ClientEndpointTest extends ClientTestCase
      */
     public function testValidUrlWrongEndpoint(){
 
-        $this->baseConfig['apiEndpoint'] = 'https://api.carwash.com/v1/';
+        $this->baseConfig['apiEndpoint'] = 'https://example.com/';
 
         try {
             $client = Client::create($this->baseConfig, $this->log);
-
-            $method = new Payment\Create($this->getPaymentParams());
-            $client->call($method);
-
         } catch (\Exception $e) {
             //throw $th;
             $this->assertStringContainsString('error', $e->getMessage());
@@ -82,6 +78,12 @@ class ClientEndpointTest extends ClientTestCase
 
         unset($this->baseConfig['apiEndpoint']);
         $client = Client::create($this->baseConfig, $this->log);
+
+        $reflection = new \ReflectionObject($client);
+        $urlProperty = $reflection->getProperty('url');
+        $urlProperty->setAccessible(true);
+
+        $this->assertSame($urlProperty->getValue(),'https://api.cardinity.com/v1/');
         $this->assertInstanceOf('Cardinity\Client', $client);
     }
 }
