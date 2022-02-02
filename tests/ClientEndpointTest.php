@@ -69,11 +69,7 @@ class ClientEndpointTest extends ClientTestCase
     public function testValidURLValidEndpoint(){
 
         $this->baseConfig['apiEndpoint'] = 'https://api.cardinity.com/v1/';
-        try {
-            $client = Client::create($this->baseConfig, $this->log);
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+        $client = Client::create($this->baseConfig, $this->log);
         $this->assertInstanceOf('Cardinity\Client', $client);
     }
 
@@ -85,11 +81,7 @@ class ClientEndpointTest extends ClientTestCase
     public function testNoEndpoint(){
 
         unset($this->baseConfig['apiEndpoint']);
-        try {
-            $client = Client::create($this->baseConfig, $this->log);
-        } catch (\Throwable $th) {
-            //throw $th;
-        }
+        $client = Client::create($this->baseConfig, $this->log);
         $this->assertInstanceOf('Cardinity\Client', $client);
     }
 }

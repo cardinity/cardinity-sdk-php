@@ -63,7 +63,8 @@ class Client
         $validator = Validation::createValidator();
 
         if(isset($options['apiEndpoint'])){
-            Client::validateClientEndpoint($options, $validator);
+            self::validateClientEndpoint($options, $validator);
+            self::$url = $options['apiEndpoint'];
         }
 
         $stack = HandlerStack::create();
@@ -210,6 +211,5 @@ class Client
                 $violations
             );
         }
-        Client::$url = $options['apiEndpoint'];
     }
 }
