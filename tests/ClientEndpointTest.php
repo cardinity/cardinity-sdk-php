@@ -15,8 +15,8 @@ class ClientEndpointTest extends ClientTestCase
     public function setUp(): void
     {
         $this->baseConfig = [
-            'consumerKey' => CONSUMER_KEY,
-            'consumerSecret' => CONSUMER_SECRET,
+            'consumerKey' => $_ENV['CONSUMER_KEY'],
+            'consumerSecret' => $_ENV['CONSUMER_SECRET'],
         ];
         $this->log = Client::LOG_NONE;
     }
