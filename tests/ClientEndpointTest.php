@@ -3,8 +3,6 @@
 namespace Cardinity\Tests;
 
 use Cardinity\Client;
-use PHPUnit\Framework\TestCase;
-use Cardinity\Method\Payment;
 
 class ClientEndpointTest extends ClientTestCase
 {
@@ -34,7 +32,6 @@ class ClientEndpointTest extends ClientTestCase
         try {
             Client::create($this->baseConfig, $this->log);
         } catch (\Exception $e) {
-            //throw $th;
             $this->assertStringContainsString('Your API endpoint is not a valid URL', $e->getMessage());
         }
     }
@@ -51,7 +48,6 @@ class ClientEndpointTest extends ClientTestCase
         try {
             $client = Client::create($this->baseConfig, $this->log);
         } catch (\Exception $e) {
-            //throw $th;
             $this->assertStringContainsString('error', $e->getMessage());
         }
         $this->assertInstanceOf('Cardinity\Client', $client);
