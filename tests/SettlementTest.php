@@ -121,7 +121,10 @@ class SettlementTest extends ClientTestCase
         $result = $this->client->call($method);
 
         $this->assertInstanceOf('Cardinity\Method\Settlement\Settlement', $result[0]);
-        $this->assertSame($settlement->getId(), $result[0]->getId());
-        $this->assertSame($settlement->getParentId(), $result[0]->getParentId());
+        foreach($result as $aSettlement){
+            if($aSettlement->getId() == $settlement->getId()){
+               $this->assertSame($settlement->getParentId(), $aSettlement->getParentId());
+            }
+        }
     }
 }

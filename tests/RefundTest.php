@@ -124,7 +124,11 @@ class RefundTest extends ClientTestCase
 
         $this->assertIsArray($result);
         $this->assertInstanceOf('Cardinity\Method\Refund\Refund', $result[0]);
-        $this->assertSame($refund->getParentId(), $result[0]->getParentId());
-        $this->assertSame($refund->getId(), $result[0]->getId());
+
+        foreach($result as $aRefund){
+            if($aRefund->getId() == $refund->getId()){
+               $this->assertSame($refund->getParentId(), $aRefund->getParentId());
+            }
+        }
     }
 }

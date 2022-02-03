@@ -115,7 +115,11 @@ class VoidPaymentTest extends ClientTestCase
         $result = $this->client->call($method);
 
         $this->assertInstanceOf('Cardinity\Method\VoidPayment\VoidPayment', $result[0]);
-        $this->assertSame($void->getParentId(), $result[0]->getParentId());
-        $this->assertSame($void->getId(), $result[0]->getId());
+
+        foreach($result as $aVoid){
+            if($aVoid->getId() == $void->getId()){
+               $this->assertSame($void->getParentId(), $aVoid->getParentId());
+            }
+        }
     }
 }
