@@ -35,6 +35,9 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress
 
+    - name: Run phpspec
+      run: bin/phpspec run --format=pretty
+
     - name: Run test suite
       env:
         CONSUMER_KEY: ${{secrets.CRD_KEY}}
