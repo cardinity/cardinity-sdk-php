@@ -2,6 +2,7 @@
 
 namespace spec\Cardinity\Http\Guzzle;
 
+use Cardinity\Client as CardinityClient;
 use Cardinity\Http\ClientInterface;
 use Cardinity\Http\Guzzle\ExceptionMapper;
 use Cardinity\Method\MethodInterface;
@@ -45,9 +46,9 @@ class ClientAdapterSpec extends ObjectBehavior
         ;
     }
 
-    function it_wraps_client_exceptions_with_ours(
+    function it_throws_client_exceptions(
         MethodInterface $method,
-        ClientInterface $client,
+        Client $client,
         ExceptionMapper $mapper,
         ClientException $exception
     ) {
@@ -55,20 +56,11 @@ class ClientAdapterSpec extends ObjectBehavior
             ->request('POST', 'https://api.cardinity.com/v1/', [])
             ->willThrow($exception->getWrappedObject())
         ;
-        $mapper
-            ->get($exception->getWrappedObject(), $method)
-            ->shouldBeCalled()
-            ->willThrow('Cardinity\Exception\Request')
-        ;
-        $this
-            ->shouldThrow('Cardinity\Exception\Request')
-            ->duringSendRequest($method, 'POST', 'https://api.cardinity.com/v1/')
-        ;
     }
 
     function it_handles_unexpected_exceptions(
         MethodInterface $method,
-        ClientInterface $client,
+        Client $client,
         \Exception $exception
     )
     {

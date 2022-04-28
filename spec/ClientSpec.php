@@ -2,6 +2,7 @@
 
 namespace spec\Cardinity;
 
+use Cardinity\Client;
 use Cardinity\Http\ClientInterface;
 use Cardinity\Method\MethodInterface;
 use Cardinity\Method\MethodResultCollectionInterface;
@@ -22,6 +23,11 @@ class ClientSpec extends ObjectBehavior
             $validator,
             $mapper
         );
+    }
+
+    function it_is_initializable()
+    {
+        $this->shouldHaveType(Client::class);
     }
 
     function it_constructs_via_factory()
