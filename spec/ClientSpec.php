@@ -30,6 +30,11 @@ class ClientSpec extends ObjectBehavior
         $this->shouldHaveType(Client::class);
     }
 
+    function it_constructs_via_factory()
+    {
+        $this::create(['consumerKey' => '', 'consumerSecret' => ''])->shouldReturnAnInstanceOf('Cardinity\Client');
+    }
+
 
     function it_maps_result_to_object_by_posting_json_body(
         MethodInterface $method,
