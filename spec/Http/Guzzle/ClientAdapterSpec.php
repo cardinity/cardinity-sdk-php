@@ -2,11 +2,9 @@
 
 namespace spec\Cardinity\Http\Guzzle;
 
-use Cardinity\Client as CardinityClient;
-use Cardinity\Http\ClientInterface;
 use Cardinity\Http\Guzzle\ExceptionMapper;
 use Cardinity\Method\MethodInterface;
-use GuzzleHttp\Client;
+use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\ClientException;
 use Psr\Http\Message\ResponseInterface;
 use PhpSpec\ObjectBehavior;
@@ -14,7 +12,7 @@ use PhpSpec\ObjectBehavior;
 class ClientAdapterSpec extends ObjectBehavior
 {
     function let(
-        Client $client,
+        ClientInterface $client,
         ExceptionMapper $mapper
     ) {
         $this->beConstructedWith($client, $mapper);
@@ -27,7 +25,7 @@ class ClientAdapterSpec extends ObjectBehavior
 
     function it_sends_post_and_returns_result(
         MethodInterface $method,
-        Client $client,
+        ClientInterface $client,
         ResponseInterface $response
     ) {
         $response
@@ -48,7 +46,7 @@ class ClientAdapterSpec extends ObjectBehavior
 
     function it_throws_client_exceptions(
         MethodInterface $method,
-        Client $client,
+        ClientInterface $client,
         ExceptionMapper $mapper,
         ClientException $exception
     ) {
@@ -60,7 +58,7 @@ class ClientAdapterSpec extends ObjectBehavior
 
     function it_handles_unexpected_exceptions(
         MethodInterface $method,
-        Client $client,
+        ClientInterface $client,
         \Exception $exception
     )
     {
