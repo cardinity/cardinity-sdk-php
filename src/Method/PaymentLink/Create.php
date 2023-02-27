@@ -69,10 +69,7 @@ class Create implements MethodInterface
                 ]),
             ]),
             'expiration_date' => new Assert\Optional([
-                /*new Assert\Regex([
-                    'pattern' => '/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z|NULL)$/',
-                    'message' => 'Date Time string should follow ISO 8601 and in UTC timezone. e.g: 2023-01-06T15:26:03.702Z'
-                ]),*/
+
                 new Assert\Regex([
                     'pattern' => '/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[\+\-]\d{2}:\d{2}))?$/',
                     'message' => 'Date Time string should follow ISO 8601. e.g: 2023-01-06T15:26:03.702Z',

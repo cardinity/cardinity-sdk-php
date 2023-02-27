@@ -216,4 +216,39 @@ class PaymentLink extends ResultObject
     {
         $this->country = $country;
     }
+
+    /**
+     * Gets the value of country.
+     * @return mixed
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Sets the value of country.
+     * @param mixed $country the country
+     * @return void
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    public function toArray(){
+        return array(
+            'id' => $this->getId(),
+            'url' => $this->getUrl(),
+
+            'amount' => $this->getAmount(),
+            'currency' => $this->getCurrency(),
+            'description' => $this->getDescription(),
+
+            'country' => $this->getCountry(),
+            'expiration_date' => $this->getExpirationDate(),
+            'multiple_use' => $this->getMultipleUse(),
+            'enabled' => $this->getEnabled(),
+        );
+    }
 }
