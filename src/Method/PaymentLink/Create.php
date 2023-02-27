@@ -42,7 +42,8 @@ class Create implements MethodInterface
             //required fields
             'amount' => new Assert\Required([
                 new Assert\NotBlank(),
-                new Assert\Type(['type' => 'float'])
+                new Assert\Type(['type' => 'float']),
+                new Assert\Positive(),
             ]),
             'currency' => new Assert\Required([
                 new Assert\Type(['type' => 'string']),
@@ -53,6 +54,7 @@ class Create implements MethodInterface
             ]),
             'description' => new Assert\Required([
                 new Assert\Type(['type' => 'string']),
+                new Assert\NotBlank(),
                 new Assert\Length([
                     'max' => 255
                 ]),
@@ -66,12 +68,18 @@ class Create implements MethodInterface
                     'max' => 2
                 ]),
             ]),
-            //TODO:: verify string is 2023-01-06T15:26:03.702Z  RFC 3339 Section 5.6. UTC datetime string
             'expiration_date' => new Assert\Optional([
-                new Assert\Type(['type' => 'string']),
-                new Assert\Length([
-                    'min' => 24,
-                    'max' => 24
+                /*new Assert\Regex([
+                    'pattern' => '/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?Z|NULL)$/',
+                    'message' => 'Date Time string should follow ISO 8601 and in UTC timezone. e.g: 2023-01-06T15:26:03.702Z'
+                ]),*/
+                new Assert\Regex([
+                    'pattern' => '/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|[\+\-]\d{2}:\d{2}))?$/',
+                    'message' => 'Date Time string should follow ISO 8601. e.g: 2023-01-06T15:26:03.702Z',
+                ]),
+                new Assert\Regex([
+                    'pattern' => '/Z$/',
+                    'message' => 'Date Time should be in UTC timezone',
                 ]),
             ]),
             'multiple_use' => new Assert\Optional([
