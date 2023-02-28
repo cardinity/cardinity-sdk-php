@@ -166,6 +166,90 @@ $method = new Payment\Get('cb5e1c95-7685-4499-a2b1-ae0f28297b92');
 $payment = $client->call($method);
 ```
 
+#### Create Payment Link
+```php
+use Cardinity\Method\PaymentLink;
+
+$client = Client::create([
+    'consumerKey' => 'YOUR_CONSUMER_KEY',
+    'consumerSecret' => 'YOUR_CONSUMER_SECRET',
+]);
+
+$method = new PaymentLink\Create([
+    'amount' => 50.00,
+    'currency' => "USD",
+    'description' => "Short description for the payment link",
+]);
+
+
+//with optional parameters
+$method = new PaymentLink\Create([
+    'amount' => 50.00,
+    'currency' => "USD",
+    'description' => "Short description for the payment link",
+
+    'country' => "LT", // ISO 3166-1 alpha-2 country code.
+    'expiration_date' => "2023-01-06T15:26:03.702Z", //ISO 8601 datetime in UTC 
+    'multiple_use' => true, //bool
+]);
+
+// again use same try ... catch block
+try {
+    $paymentLink = $client->call($method);
+}
+// same catch blocks ...
+// ...
+
+```
+
+
+#### Get Payment Link
+```php
+use Cardinity\Method\PaymentLink;
+
+$client = Client::create([
+    'consumerKey' => 'YOUR_CONSUMER_KEY',
+    'consumerSecret' => 'YOUR_CONSUMER_SECRET',
+]);
+
+$method = new PaymentLink\Get($linkid);
+
+// again use same try ... catch block
+try {
+    $paymentLink = $client->call($method);
+}
+// same catch blocks ...
+// ...
+
+```
+
+
+#### Create Payment Link
+```php
+use Cardinity\Method\PaymentLink;
+
+$client = Client::create([
+    'consumerKey' => 'YOUR_CONSUMER_KEY',
+    'consumerSecret' => 'YOUR_CONSUMER_SECRET',
+]);
+
+$method = new PaymentLink\Update(
+    $payment_link_id,
+    [
+        'expiration_date' => "2023-01-06T15:26:03.702Z", //ISO 8601 datetime in UTC 
+        'enabled' => true,  // true or false
+    ]
+);
+
+// again use same try ... catch block
+try {
+    $updatedPaymentLink = $client->call($method);
+}
+// same catch blocks ...
+// ...
+
+```
+
 ## API documentation
 [https://developers.cardinity.com/api/v1/](https://developers.cardinity.com/api/v1/)
 
