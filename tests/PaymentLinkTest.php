@@ -104,6 +104,7 @@ class PaymentLinkTest extends ClientTestCase
         $this->assertInstanceOf('Cardinity\Method\PaymentLink\PaymentLink', $result);
         $this->assertSame(true, $result->getEnabled());
         $this->assertSame(false, $result->getMultipleUse());
+        $this->assertSame("https://checkout.cardinity.com/link/".$result->getId(), $result->getUrl());
 
         return $result;
     }
@@ -122,6 +123,7 @@ class PaymentLinkTest extends ClientTestCase
 
         $this->assertInstanceOf('Cardinity\Method\PaymentLink\PaymentLink', $result);
         $this->assertSame(true, $result->getEnabled());
+        $this->assertSame("https://checkout.cardinity.com/link/".$result->getId(), $result->getUrl());
         return $result;
     }
 
