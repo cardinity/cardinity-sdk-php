@@ -166,6 +166,9 @@ $method = new Payment\Get('cb5e1c95-7685-4499-a2b1-ae0f28297b92');
 $payment = $client->call($method);
 ```
 
+#### Payment Link
+To create a payment link you have to create a new payment link object. You can retrieve individual payment links and update payment link parameters. Payment links are identified by a UUID.
+
 #### Create Payment Link
 ```php
 use Cardinity\Method\PaymentLink;
