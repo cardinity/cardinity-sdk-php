@@ -52,6 +52,7 @@ class PaymentLink extends ResultObject
       * @type boolean Indicates whether the payment link can be used more than once
       * mode.
       * Value assigned by Cardinity.
+      * Default value is false
       */
     private $multiple_use;
 
@@ -234,21 +235,5 @@ class PaymentLink extends ResultObject
     public function setUrl($url)
     {
         $this->url = $url;
-    }
-
-    public function toArray(){
-        return array(
-            'id' => $this->getId(),
-            'url' => $this->getUrl(),
-
-            'amount' => $this->getAmount(),
-            'currency' => $this->getCurrency(),
-            'description' => $this->getDescription(),
-
-            'country' => $this->getCountry(),
-            'expiration_date' => $this->getExpirationDate(),
-            'multiple_use' => $this->getMultipleUse(),
-            'enabled' => $this->getEnabled(),
-        );
     }
 }
