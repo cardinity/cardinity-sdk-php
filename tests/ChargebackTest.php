@@ -78,6 +78,8 @@ class ChargebackTest extends ClientTestCase
         $method = new Chargeback\GetAll();
         $chargebacks = $this->client->call($method);
         $this->assertIsArray($chargebacks);
+
+        $this->assertInstanceOf('Cardinity\Method\Chargeback\Chargeback', $chargebacks[0]);
     }
 
     /**
@@ -100,7 +102,7 @@ class ChargebackTest extends ClientTestCase
      *
      * @return void
      */
-    /*public function testGetSpecificChargeback()
+    public function testGetSpecificChargeback()
     {
         $test_cb_id = "816008be-701b-4c4f-a69c-77b1030edc23";
         $test_parent_id = "e7ea294c-5737-4f8d-93fb-3acd003f96f1";
@@ -108,6 +110,6 @@ class ChargebackTest extends ClientTestCase
         $method = new Chargeback\Get($test_parent_id, $test_cb_id);
         $chargeback = $this->client->call($method);
         $this->assertInstanceOf('Cardinity\Method\Chargeback\Chargeback', $chargeback);
-    }*/
+    }
 
 }
