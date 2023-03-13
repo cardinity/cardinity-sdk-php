@@ -80,36 +80,45 @@ class ChargebackTest extends ClientTestCase
         $this->assertIsArray($chargebacks);
 
         $this->assertInstanceOf('Cardinity\Method\Chargeback\Chargeback', $chargebacks[0]);
+
+        return $chargebacks[0];
     }
 
     /**
-     * Get Chargebacks by parent payment id
+     * Get chargeback by parent payment id
      *
+     * @depends testGetAllChargebacks
+     * @param Chargeback\Chargeback
      * @return void
      */
-    public function testGetAllChargebackForPayment()
+    public function testGetAllChargebackForPayment(Chargeback\Chargeback $chargeback)
     {
-        $method = new Payment\Create($this->get3ds2PaymentParams());
-        $testPayment = $this->client->call($method);
+        $method = new Chargeback\GetAll(10, $chargeback->getParentId());
+        $result = $this->client->call($method);
+        $this->assertIsArray($result);
 
-        $method = new Chargeback\GetAll(10, $testPayment->getId());
-        $chargebacks = $this->client->call($method);
-        $this->assertIsArray($chargebacks);
+        $this->assertInstanceOf('Cardinity\Method\Chargeback\Chargeback', $result[0]);
+
     }
 
     /**
      * Get Specific Chargeback by parent payment id and chargeback id
      *
+     * @depends testGetAllChargebacks
+     * @param Chargeback\Chargeback
      * @return void
-     */
-    public function testGetSpecificChargeback()
+     */ function testGetSpecificChargeback(Chargeback\Chargeback $chargeback)
     {
-        $test_cb_id = "816008be-701b-4c4f-a69c-77b1030edc23";
-        $test_parent_id = "e7ea294c-5737-4f8d-93fb-3acd003f96f1";
+        $test_cb_id = $chargeback->getId();
+        $test_parent_id = $chargeback->getParentId();
 
         $method = new Chargeback\Get($test_parent_id, $test_cb_id);
-        $chargeback = $this->client->call($method);
-        $this->assertInstanceOf('Cardinity\Method\Chargeback\Chargeback', $chargeback);
+        $result = $this->client->call($method);
+
+        $this->assertInstanceOf('Cardinity\Method\Chargeback\Chargeback', $result);
+        $this->assertSame($test_cb_id, $result->getId());
+        $this->assertSame($test_parent_id, $result->getParentId());
+        $this->assertSame('chargeback', $result->getType());
     }
 
 }
