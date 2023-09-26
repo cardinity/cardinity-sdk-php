@@ -16,8 +16,7 @@ class Payment extends ResultObject
     private $amount;
 
     /** @type string Three-letter ISO currency code representing the currency in
-        which the charge was made.
-        Supported currencies: EUR, USD. */
+        which the charge was made. */
     private $currency;
 
     /** @type string Payment creation time as defined in RFC 3339 Section 5.6.
