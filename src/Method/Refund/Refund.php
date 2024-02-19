@@ -275,6 +275,15 @@ class Refund extends ResultObject
     }
 
     /**
+     * Check if refund is processing
+     * @return boolean
+     */
+    public function isProcessing()
+    {
+        return $this->getStatus() === 'processing';
+    }
+
+    /**
      * Check if refund is declined
      * @return boolean
      */
