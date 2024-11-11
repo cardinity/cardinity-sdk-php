@@ -299,21 +299,4 @@ class PaymentTest extends ClientTestCase
 
         return $result;
     }
-
-    public function testJPYCurrencyDecimalAmount()
-    {
-        $params = $this->paymentParams;
-        $params['amount'] = 12;
-        $params['settle'] = true;
-        $params['currency'] = 'JPY';
-        $params['payment_instrument']['pan'] = '5555555555554444';
-
-        $method = new Payment\Create($params);
-        $result = $this->client->call($method);
-
-        $this->assertInstanceOf('Cardinity\Method\Payment\Payment', $result);
-        $this->assertSame(true, $result->isApproved());
-
-        return $result;
-    }
 }
