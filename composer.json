@@ -14,7 +14,7 @@
         "monolog/monolog"           : "~1.0",
         "phpspec/phpspec"           : "~6.2||7.*",
         "phpunit/phpunit"           : "^8.5",
-        "symfony/yaml"              : "^4.4"
+        "symfony/yaml"              : ">=4.4"
     },
     "config": {
         "bin-dir": "bin"
