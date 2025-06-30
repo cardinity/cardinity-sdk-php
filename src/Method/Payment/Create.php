@@ -206,7 +206,7 @@ class Create implements MethodInterface
         string $typeValue,
         bool $isRequired = false,
         ?array $length = null,
-        mixed $args = null // TODO can it be null?
+        $args = null // TODO can it be null?
     ): object
     {
         $inside_array = $this->getInsideArray($typeValue);
