@@ -205,8 +205,8 @@ class Create implements MethodInterface
     private function buildElement(
         string $typeValue,
         bool $isRequired = false,
-        array $length = null,
-        $args = null // TODO can it be null?
+        ?array $length = null,
+        mixed $args = null // TODO can it be null?
     ): object
     {
         $inside_array = $this->getInsideArray($typeValue);
