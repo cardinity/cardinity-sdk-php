@@ -15,8 +15,8 @@
 
     <php>
         <!-- For integration tests -->
-        <env name="CONSUMER_KEY" value=""/>
-        <env name="CONSUMER_SECRET" value=""/>
+        <env name="CONSUMER_KEY" value="test_jhcm1kuiowcs2s9dj03vryr4v8yf4f"/>
+        <env name="CONSUMER_SECRET" value="uczqtwmhh2dj1m2vkulspssqisqc2qzjo8v23auqssux4opvaf"/>
     </php>
 
     <testsuites>
